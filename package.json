@@ -4,7 +4,8 @@
   "description": "This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.com/user/mumshad-mannambeth/) - [NodeJs, Typescript, TDD, DDD, Clean Architecture AND SOLID](https://www.udemy.com/course/tdd-com-mango/) course.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:staged": "npm test -- --findRelatedTests"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/leonardopliski/clean-ts-api-course#readme",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/node": "^15.12.4",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
     "eslint": "^7.29.0",
@@ -28,7 +30,10 @@
     "eslint-plugin-promise": "^4.3.1",
     "git-commit-msg-linter": "^3.2.6",
     "husky": "^6.0.0",
+    "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   }
 }
