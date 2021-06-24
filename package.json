@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/leonardopliski/clean-ts-api-course/issues"
   },
-  "homepage": "https://github.com/leonardopliski/clean-ts-api-course#readme"
+  "homepage": "https://github.com/leonardopliski/clean-ts-api-course#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.6"
+  }
 }
