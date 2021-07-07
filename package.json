@@ -24,8 +24,10 @@
   },
   "homepage": "https://github.com/leonardopliski/clean-ts-api-course#readme",
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.3.1",
     "@types/bcrypt": "^3.0.0",
     "@types/jest": "^26.0.23",
+    "@types/mongodb": "^3.6.20",
     "@types/node": "^15.12.4",
     "@types/validator": "^13.6.2",
     "@typescript-eslint/eslint-plugin": "^4.28.0",
@@ -45,6 +47,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "mongodb": "^3.6.10",
     "validator": "^13.6.0"
   }
 }

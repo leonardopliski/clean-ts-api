@@ -6,6 +6,7 @@ export default {
   clearMocks: true,
   collectCoverage: true,
   coverageProvider: 'v8',
+  preset: '@shelf/jest-mongodb',
   transform: {
     '.+\\.ts$': 'ts-jest'
   }
