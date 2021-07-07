@@ -4,6 +4,7 @@
   "description": "This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.com/user/mumshad-mannambeth/) - [NodeJs, Typescript, TDD, DDD, Clean Architecture AND SOLID](https://www.udemy.com/course/tdd-com-mango/) course.",
   "main": "index.js",
   "scripts": {
+    "start": "sucrase-node src/main/server.ts",
     "test": "jest --silent --coverage=false --noStackTrace --runInBand",
     "test:verbose": "jest --runInBand",
     "test:coverage": "npm test -- --coverage",
@@ -27,6 +28,7 @@
   "devDependencies": {
     "@shelf/jest-mongodb": "^1.3.1",
     "@types/bcrypt": "^3.0.0",
+    "@types/express": "^4.17.13",
     "@types/jest": "^26.0.23",
     "@types/mongodb": "^3.6.20",
     "@types/node": "^15.12.4",
@@ -42,12 +44,14 @@
     "husky": "^7.0.1",
     "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
+    "sucrase": "^3.19.0",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "express": "^4.17.1",
     "mongodb": "^3.6.10",
     "validator": "^13.6.0"
   }
