@@ -1,0 +1,3 @@
+FROM mongo:4.4.6-bionic
+
+LABEL org.opencontainers.image.authors="leonardopliski@gmail.com"

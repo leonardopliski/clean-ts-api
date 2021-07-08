@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      dockerfile: .docker/api/Dockerfile.dev
+      context: ./
+    ports:
+      - "5050:5050"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file: .env.local
+
+  database-mongo:
+    restart: always
+    image: mongo:4.4.6-bionic
+    env_file: .env.local
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    env_file: .env.local

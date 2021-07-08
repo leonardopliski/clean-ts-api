@@ -1,0 +1,17 @@
+FROM node:15-alpine
+
+LABEL org.opencontainers.image.authors="leonardopliski@gmail.com"
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN apk add python make g++ && \
+    npm install && \
+    apk del make g++ python
+
+COPY . .
+
+EXPOSE 5050
+
+CMD ["npm", "start"]
