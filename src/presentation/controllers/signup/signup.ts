@@ -1,8 +1,8 @@
-import { IAddAccount, Controller, IEmailValidator, HttpRequest, HttpResponse } from './signup-protocols'
+import { IAddAccount, IController, IEmailValidator, HttpRequest, HttpResponse } from './signup-protocols'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest, ok, serverError } from '../../helpers'
 
-export class SignUpController implements Controller {
+export class SignUpController implements IController {
   private readonly emailValidator: IEmailValidator
   private readonly addAccount: IAddAccount
 
