@@ -1,6 +1,6 @@
 import { ILogErrorRepository } from '../../data/protocols/log-error-repository'
 import { serverError } from '../../presentation/helpers'
-import { HttpRequest, HttpResponse, IController } from '../../presentation/protocols'
+import { IHttpRequest, IHttpResponse, IController } from '../../presentation/protocols'
 import { LogControllerDecorator } from './log'
 
 interface ISutTypes {
@@ -11,8 +11,8 @@ interface ISutTypes {
 
 const makeController = (): IController => {
   class ControllerStub implements IController {
-    async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-      const httpResponse: HttpResponse = {
+    async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+      const httpResponse: IHttpResponse = {
         statusCode: 200,
         body: {
           name: 'Rodrigo'

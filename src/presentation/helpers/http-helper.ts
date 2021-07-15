@@ -1,16 +1,16 @@
 import { ServerError } from '../errors'
-import { HttpResponse } from '../protocols/http'
+import { IHttpResponse } from '../protocols/http'
 
-export const badRequest = (error: Error): HttpResponse => (
+export const badRequest = (error: Error): IHttpResponse => (
   { statusCode: 400, body: error }
 )
 
-export const serverError = (error: Error): HttpResponse => ({
+export const serverError = (error: Error): IHttpResponse => ({
   statusCode: 500,
   body: new ServerError(error.stack)
 })
 
-export const ok = (data: any): HttpResponse => ({
+export const ok = (data: any): IHttpResponse => ({
   statusCode: 200,
   body: data
 })
