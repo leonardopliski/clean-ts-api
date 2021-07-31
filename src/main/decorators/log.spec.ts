@@ -1,4 +1,4 @@
-import { ILogErrorRepository } from '../../data/protocols/log-error-repository'
+import { ILogErrorRepository } from '../../data/protocols/db/log-error-repository'
 import { IAccountModel } from '../../domain/models/account'
 import { ok, serverError } from '../../presentation/helpers'
 import { IHttpRequest, IHttpResponse, IController } from '../../presentation/protocols'
