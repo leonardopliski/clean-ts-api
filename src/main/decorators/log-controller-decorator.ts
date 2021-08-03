@@ -3,13 +3,10 @@ import { ServerError } from '../../presentation/errors'
 import { IHttpRequest, IHttpResponse, IController } from '../../presentation/protocols'
 
 export class LogControllerDecorator implements IController {
-  private readonly controller: IController
-  private readonly logErrorRepository: ILogErrorRepository
-
-  constructor (controller: IController, logErrorRepository: ILogErrorRepository) {
-    this.controller = controller
-    this.logErrorRepository = logErrorRepository
-  }
+  constructor (
+    private readonly controller: IController,
+    private readonly logErrorRepository: ILogErrorRepository
+  ) { }
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     const httpResponse = await this.controller.handle(httpRequest)
