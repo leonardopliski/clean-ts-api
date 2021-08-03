@@ -1,4 +1,4 @@
-import { IAddAccount, IController, IHttpRequest, IHttpResponse, IValidation } from './signup-protocols'
+import { IAddAccount, IController, IHttpRequest, IHttpResponse, IValidation } from './signup-controller-protocols'
 import { badRequest, ok, serverError } from '../../helpers'
 
 export class SignUpController implements IController {
