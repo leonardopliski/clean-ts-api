@@ -8,7 +8,10 @@
     "npm": ">=7.0.0"
   },
   "scripts": {
-    "start": "sucrase-node src/main/server.ts",
+    "clean-dist-folder": "rimraf dist",
+    "build": "npm run clean-dist-folder && tsc",
+    "start": "node dist/main/server.js",
+    "dev": "sucrase-node src/main/server.ts",
     "test": "jest --silent --coverage=false --noStackTrace --runInBand",
     "test:verbose": "jest --runInBand",
     "test:coverage": "npm test -- --coverage",
@@ -50,6 +53,7 @@
     "husky": "^7.0.1",
     "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
+    "rimraf": "^3.0.2",
     "sucrase": "^3.19.0",
     "supertest": "^6.1.3",
     "ts-jest": "^27.0.3",
@@ -59,7 +63,6 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "express": "^4.17.1",
-    "fast-glob": "^3.2.6",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.10",
     "validator": "^13.6.0"
