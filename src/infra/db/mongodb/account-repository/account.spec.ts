@@ -1,5 +1,4 @@
 import { Collection } from 'mongodb'
-import { IAccountModel } from '../../../../domain/models/account'
 import { MongoHelper } from '../helpers/mongo-helper'
 import { AccountMongoRepository } from './account'
 
