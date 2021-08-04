@@ -4,8 +4,8 @@
   "description": "This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.com/user/mumshad-mannambeth/) - [NodeJs, Typescript, TDD, DDD, Clean Architecture AND SOLID](https://www.udemy.com/course/tdd-com-mango/) course.",
   "main": "index.js",
   "engines": {
-    "node": ">=15.0.0",
-    "npm": ">=7.0.0"
+    "node": "16.x",
+    "npm": "7.x"
   },
   "scripts": {
     "clean-dist-folder": "rimraf dist",
