@@ -2,6 +2,7 @@
   "name": "clean-ts-api-course",
   "version": "1.1.0",
   "description": "This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.com/user/mumshad-mannambeth/) - [NodeJs, Typescript, TDD, DDD, Clean Architecture AND SOLID](https://www.udemy.com/course/tdd-com-mango/) course.",
+  "author": "Leonardo Pliskieviski",
   "main": "index.js",
   "engines": {
     "node": "16.x",
@@ -27,7 +28,6 @@
     "url": "git+https://github.com/leonardopliski/clean-ts-api-course.git"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leonardopliski/clean-ts-api-course/issues"
