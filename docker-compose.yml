@@ -2,24 +2,32 @@ version: "3.9"
 
 services:
   api:
+    container_name: api
+    image: clean-node-api
+    command: npm run dev
     build:
       dockerfile: .docker/api/Dockerfile.dev
       context: ./
     ports:
       - "5050:5050"
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./dist:/usr/src/app/dist
     env_file: .env.local
     depends_on:
       - database-mongo
 
   database-mongo:
+    container_name: database-mongo
     restart: always
     image: mongo:4.4.6-bionic
     env_file: .env.local
+    volumes: 
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
 
   mongo-express:
+    container_name: mongo-express-interface
     image: mongo-express
     restart: always
     ports:

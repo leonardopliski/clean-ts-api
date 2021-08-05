@@ -10,6 +10,4 @@ RUN npm install --only=prod
 
 COPY ./dist ./dist
 
-EXPOSE 5050
-
 CMD ["npm", "run", "start"]
