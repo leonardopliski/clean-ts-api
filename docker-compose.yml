@@ -4,7 +4,7 @@ services:
   api:
     container_name: api
     image: clean-node-api
-    command: npm run dev
+    command: npm run start
     build:
       dockerfile: .docker/api/Dockerfile.dev
       context: ./
@@ -22,7 +22,7 @@ services:
     image: mongo:4.4.6-bionic
     env_file: .env.local
     volumes: 
-      - ./data:/data/db
+      - mongodb-data:/data/db
     ports:
       - "27017:27017"
 
@@ -35,3 +35,6 @@ services:
     env_file: .env.local
     depends_on:
       - database-mongo
+
+volumes: 
+  mongodb-data:
