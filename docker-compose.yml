@@ -4,14 +4,16 @@ services:
   api:
     container_name: api
     image: clean-node-api
-    command: npm run start
+    command: npm run debug
     build:
       dockerfile: .docker/api/Dockerfile.dev
       context: ./
     ports:
       - "5050:5050"
+      - "9222:9222"
     volumes:
       - ./dist:/usr/src/app/dist
+      - ./package.json:/usr/src/app/package.json
     env_file: .env.local
     depends_on:
       - database-mongo

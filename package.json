@@ -12,6 +12,7 @@
     "clean-dist-folder": "rimraf dist",
     "build": "npm run clean-dist-folder && tsc",
     "start": "node dist/main/server.js",
+    "debug": "node --inspect=0.0.0.0:9222 --nolazy dist/main/server.js",
     "up": "npm run build && docker-compose up",
     "down": "docker-compose down",
     "test": "jest --silent --coverage=false --noStackTrace --runInBand",
