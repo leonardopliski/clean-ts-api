@@ -3,10 +3,9 @@
   "version": "1.1.0",
   "description": "This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.com/user/mumshad-mannambeth/) - [NodeJs, Typescript, TDD, DDD, Clean Architecture AND SOLID](https://www.udemy.com/course/tdd-com-mango/) course.",
   "author": "Leonardo Pliskieviski",
-  "main": "index.js",
   "engines": {
-    "node": "16.x",
-    "npm": "7.x"
+    "node": "14.x",
+    "npm": "6.x"
   },
   "scripts": {
     "clean-dist-folder": "rimraf dist",
@@ -21,8 +20,7 @@
     "test:unit": "npm test -- --watch -c jest-unit.config.ts",
     "test:integration": "npm test -- --watch -c jest-integration.config.ts",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm run test:coverage",
-    "prepare": "husky install"
+    "test:ci": "npm run test:coverage"
   },
   "repository": {
     "type": "git",
