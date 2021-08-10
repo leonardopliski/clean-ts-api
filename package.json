@@ -5,7 +5,7 @@
   "author": "Leonardo Pliskieviski",
   "engines": {
     "node": "16.x",
-    "npm": "6.x"
+    "npm": "7.x"
   },
   "scripts": {
     "clean-dist-folder": "rimraf dist",
