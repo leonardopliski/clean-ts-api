@@ -1,5 +1,4 @@
 FROM node:16-alpine
-LABEL org.opencontainers.image.authors="leonardopliski@gmail.com"
 WORKDIR /usr/src/app
 COPY ./package*.json ./
-RUN npm install --only=production
+RUN npm install -g npm@6 && npm install --only=production
