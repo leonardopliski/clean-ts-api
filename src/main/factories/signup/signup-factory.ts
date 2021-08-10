@@ -1,6 +1,6 @@
 import env from '../../config/env'
-import { DbAuthentication } from '@/data/usecases/authentication/db-authentication'
-import { JwtAdapter } from '@/infra/cryptography/jwt-adapter/jwt-adapter'
+import { DbAuthentication } from '../../../data/usecases/authentication/db-authentication'
+import { JwtAdapter } from '../../../infra/cryptography/jwt-adapter/jwt-adapter'
 import { DbAddAccount } from '../../../data/usecases/add-account/db-add-account'
 import { BcryptAdapter } from '../../../infra/cryptography/bcrypt-adapter/bcrypt-adapter'
 import { AccountMongoRepository } from '../../../infra/db/mongodb/account/account-mongo-repository'
