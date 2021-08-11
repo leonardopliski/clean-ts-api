@@ -6,7 +6,7 @@
 2. ⛔ Validates if the request was done by an **admin**
 3. ⛔ Validates the required fields **question** and **answers**
 4. ⛔ **Creates** a survey with the provided data
-5. ⛔ Returns **204**, without data.
+5. ✅ Returns **204**, without data.
 
 > ## Exceptions
 
