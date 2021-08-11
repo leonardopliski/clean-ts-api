@@ -13,5 +13,5 @@
 1. ⛔ Returns the **404** error if the api doesn't exists.
 2. ⛔ Returns the **403** error if the user is not an admin
 3. ✅ Returns the **400** error if the question or answers aren't provided by the client.
-4. ⛔ Returns the **500** error if an error is thrown when trying to create a survey.
+4. ✅ Returns the **500** error if an error is thrown when trying to create a survey.
 
