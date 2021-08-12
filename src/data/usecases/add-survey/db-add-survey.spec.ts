@@ -11,18 +11,22 @@ const makeFakeSurveyData = (): IAddSurveyModel => ({
   ]
 })
 
+const makeAddSurveyRepository = (): IAddSurveyRepository => {
+  class AddSurveyRepositoryStub implements IAddSurveyRepository {
+    async add (surveyData: IAddSurveyModel): Promise<void> {
+      return await new Promise(resolve => resolve())
+    }
+  }
+  return new AddSurveyRepositoryStub()
+}
+
 interface ISutTypes {
   sut: DbAddSurvey
   addSurveyRepositoryStub: IAddSurveyRepository
 }
 
 const makeSut = (): ISutTypes => {
-  class AddSurveyRepositoryStub implements IAddSurveyRepository {
-    async add (surveyData: IAddSurveyModel): Promise<void> {
-      return await new Promise(resolve => resolve())
-    }
-  }
-  const addSurveyRepositoryStub = new AddSurveyRepositoryStub()
+  const addSurveyRepositoryStub = makeAddSurveyRepository()
   const sut = new DbAddSurvey(addSurveyRepositoryStub)
   return { sut, addSurveyRepositoryStub }
 }
