@@ -1,8 +1,6 @@
-import { IAccountModel } from '../../domain/models/account'
-import { ILoadAccountByToken } from '../../domain/usecases/load-account-by-token'
+import { IAccountModel, ILoadAccountByToken, IHttpRequest } from './auth-middleware-protocols'
 import { AccessDeniedError } from '../errors'
 import { forbidden, ok, serverError } from '../helpers'
-import { IHttpRequest } from '../protocols'
 import { AuthMiddleware } from './auth-middleware'
 
 const makeFakeAccount = (): IAccountModel => ({
