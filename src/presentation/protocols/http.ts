@@ -4,5 +4,6 @@ export interface IHttpResponse {
 }
 
 export interface IHttpRequest {
+  headers?: { [key: string]: string }
   body?: any
 }
