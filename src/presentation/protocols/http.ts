@@ -4,6 +4,6 @@ export interface IHttpResponse {
 }
 
 export interface IHttpRequest {
-  headers?: { [key: string]: string }
+  headers?: Record<string, any>
   body?: any
 }
