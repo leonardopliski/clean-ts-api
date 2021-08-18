@@ -32,7 +32,7 @@ interface ISutTypes {
   loadSurveysRepositoryStub: ILoadSurveysRepository
 }
 
-const makeLoadSurveysRepository = () => {
+const makeLoadSurveysRepository = (): ILoadSurveysRepository => {
   class LoadSurveysRepositoryStub implements ILoadSurveysRepository {
     async loadAll (): Promise<ISurveyModel[]> {
       return await new Promise(resolve => resolve(makeFakeSurveys()))
@@ -56,5 +56,11 @@ describe('DbLoadSurveys', () => {
     const loadAllSpy = jest.spyOn(loadSurveysRepositoryStub, 'loadAll')
     await sut.load()
     expect(loadAllSpy).toHaveBeenCalled()
+  })
+
+  test('should return a list of Surveys on success', async () => {
+    const { sut } = makeSut()
+    const surveys = await sut.load()
+    expect(surveys).toEqual(makeFakeSurveys())
   })
 })
