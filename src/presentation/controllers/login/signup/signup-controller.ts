@@ -1,4 +1,4 @@
-import { IAuthentication, IAddAccount, IController, IHttpRequest, IHttpResponse, IValidation } from './signup-controller-protocols'
+import { IAuthentication, IAddAccount, IController, THttpRequest, THttpResponse, IValidation } from './signup-controller-protocols'
 import { badRequest, forbidden, ok, serverError } from '@/presentation/helpers'
 import { EmailInUseError } from '@/presentation/errors'
 
@@ -9,7 +9,7 @@ export class SignUpController implements IController {
     private readonly authentication: IAuthentication
   ) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle (httpRequest: THttpRequest): Promise<THttpResponse> {
     try {
       const error = this.validation.validate(httpRequest.body)
       if (error) {

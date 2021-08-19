@@ -1,9 +1,9 @@
 import { SignUpController } from './signup-controller'
-import { IAddAccount, IAddAccountModel, IAccountModel, IHttpRequest, IAuthentication, IAuthenticationModel, IValidation } from './signup-controller-protocols'
+import { IAddAccount, TAddAccountModel, TAccountModel, THttpRequest, IAuthentication, TAuthenticationModel, IValidation } from './signup-controller-protocols'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
 import { ok, serverError, badRequest, forbidden } from '@/presentation/helpers/http/http-helper'
 
-const makeFakeAccount = (): IAccountModel => ({
+const makeFakeAccount = (): TAccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email@mail.com',
@@ -12,7 +12,7 @@ const makeFakeAccount = (): IAccountModel => ({
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: IAuthenticationModel): Promise<string> {
+    async auth (authentication: TAuthenticationModel): Promise<string> {
       return await new Promise(resolve => resolve('any_token'))
     }
   }
@@ -20,7 +20,7 @@ const makeAuthentication = (): IAuthentication => {
 }
 const makeAddAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    async add (account: IAddAccountModel): Promise<IAccountModel> {
+    async add (account: TAddAccountModel): Promise<TAccountModel> {
       return await new Promise(resolve => resolve(makeFakeAccount()))
     }
   }
@@ -36,7 +36,7 @@ const makeValidation = (): IValidation => {
   return new ValidationStub()
 }
 
-const makeFakeRequest = (): IHttpRequest => {
+const makeFakeRequest = (): THttpRequest => {
   return {
     body: {
       name: 'any_name',
@@ -47,14 +47,14 @@ const makeFakeRequest = (): IHttpRequest => {
   }
 }
 
-interface ISutTypes {
+interface TSut {
   sut: SignUpController
   addAccountStub: IAddAccount
   validationStub: IValidation
   authenticationStub: IAuthentication
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const addAccountStub = makeAddAccount()
   const validationStub = makeValidation()
   const authenticationStub = makeAuthentication()

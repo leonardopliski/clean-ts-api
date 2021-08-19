@@ -1,11 +1,11 @@
-import { IAccountModel } from '@/domain/models/account'
+import { TAccountModel } from '@/domain/models/account'
 
-export interface IAddAccountModel {
+export type TAddAccountModel = {
   name: string
   email: string
   password: string
 }
 
 export interface IAddAccount {
-  add: (account: IAddAccountModel) => Promise<IAccountModel>
+  add: (account: TAddAccountModel) => Promise<TAccountModel>
 }

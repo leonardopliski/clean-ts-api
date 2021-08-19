@@ -1,29 +1,29 @@
-import { IAccountModel, ILoadAccountByToken, IHttpRequest } from './auth-middleware-protocols'
+import { TAccountModel, ILoadAccountByToken, THttpRequest } from './auth-middleware-protocols'
 import { AuthMiddleware } from './auth-middleware'
 import { AccessDeniedError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
 
-const makeFakeAccount = (): IAccountModel => ({
+const makeFakeAccount = (): TAccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
 })
 
-const makeFakeRequest = (): IHttpRequest => ({
+const makeFakeRequest = (): THttpRequest => ({
   headers: {
     'x-access-token': 'any_token'
   }
 })
 
-interface ISutTypes {
+interface TSut {
   sut: AuthMiddleware
   loadAccountByTokenStub: ILoadAccountByToken
 }
 
 const makeLoadAccountByToken = (): ILoadAccountByToken => {
   class LoadAccountByTokenStub implements ILoadAccountByToken {
-    async load (accessToken: string, role?: string): Promise<IAccountModel> {
+    async load (accessToken: string, role?: string): Promise<TAccountModel> {
       return await new Promise(resolve => resolve(makeFakeAccount()))
     }
   }
@@ -31,7 +31,7 @@ const makeLoadAccountByToken = (): ILoadAccountByToken => {
   return loadAccountByTokenStub
 }
 
-const makeSut = (role?: string): ISutTypes => {
+const makeSut = (role?: string): TSut => {
   const loadAccountByTokenStub = makeLoadAccountByToken()
   const sut = new AuthMiddleware(loadAccountByTokenStub, role)
   return {

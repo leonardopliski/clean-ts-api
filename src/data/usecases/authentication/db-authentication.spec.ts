@@ -1,14 +1,14 @@
 import { DbAuthentication } from './db-authentication'
 import {
-  IAccountModel,
-  IAuthenticationModel,
+  TAccountModel,
+  TAuthenticationModel,
   IHashComparer,
   IEncrypter,
   ILoadAccountByEmailRepository,
   IUpdateAccessTokenRepository
 } from './db-authentication-protocols'
 
-const makeFakeAccount = (): IAccountModel => ({
+const makeFakeAccount = (): TAccountModel => ({
   id: 'any_id',
   email: 'any_email@mail.com',
   password: 'hashed_password',
@@ -17,14 +17,14 @@ const makeFakeAccount = (): IAccountModel => ({
 
 const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements ILoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<IAccountModel> {
+    async loadByEmail (email: string): Promise<TAccountModel> {
       return await new Promise(resolve => resolve(makeFakeAccount()))
     }
   }
   return new LoadAccountByEmailRepositoryStub()
 }
 
-const makeFakeAuthentication = (): IAuthenticationModel => ({
+const makeFakeAuthentication = (): TAuthenticationModel => ({
   email: 'any_email@mail.com',
   password: 'any_password'
 })
@@ -56,7 +56,7 @@ const makeUpdateAccessTokenRepositoryStub = (): IUpdateAccessTokenRepository => 
   return new UpdateAcccessTokenRepositoryStub()
 }
 
-interface ISutTypes {
+interface TSut {
   sut: DbAuthentication
   loadAccountByEmailRepositoryStub: ILoadAccountByEmailRepository
   hashComparerStub: IHashComparer
@@ -64,7 +64,7 @@ interface ISutTypes {
   updateAccessTokenRepositoryStub: IUpdateAccessTokenRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository()
   const hashComparerStub = makeHashComparerStub()
   const encrypterStub = makeEncrypterStub()

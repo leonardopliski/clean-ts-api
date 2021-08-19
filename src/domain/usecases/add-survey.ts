@@ -1,11 +1,11 @@
-import { ISurveyAnswerModel } from '@/domain/models/survey'
+import { TSurveyAnswerModel } from '@/domain/models/survey'
 
-export interface IAddSurveyModel {
+export type TAddSurveyModel = {
   question: string
-  answers: ISurveyAnswerModel[]
+  answers: TSurveyAnswerModel[]
   date: Date
 }
 
 export interface IAddSurvey {
-  add: (data: IAddSurveyModel) => Promise<void>
+  add: (data: TAddSurveyModel) => Promise<void>
 }

@@ -1,20 +1,20 @@
 import {
   IHasher,
   IAddAccountRepository,
-  IAccountModel,
-  IAddAccountModel,
+  TAccountModel,
+  TAddAccountModel,
   ILoadAccountByEmailRepository
 } from './db-add-account-protocols'
 import { DbAddAccount } from './db-add-account'
 
-const makeFakeAccount = (): IAccountModel => ({
+const makeFakeAccount = (): TAccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'hashed_password'
 })
 
-const makeFakeAccountData = (): IAddAccountModel => ({
+const makeFakeAccountData = (): TAddAccountModel => ({
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
@@ -31,7 +31,7 @@ const makeHasher = (): IHasher => {
 
 const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements ILoadAccountByEmailRepository {
-    async loadByEmail (email: string): Promise<IAccountModel> {
+    async loadByEmail (email: string): Promise<TAccountModel> {
       return await new Promise(resolve => resolve(null))
     }
   }
@@ -40,21 +40,21 @@ const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
 
 const makeAddAccountRepository = (): IAddAccountRepository => {
   class AddAccountRepositoryStub implements IAddAccountRepository {
-    async add (accountData: IAddAccountModel): Promise<IAccountModel> {
+    async add (accountData: TAddAccountModel): Promise<TAccountModel> {
       return await new Promise((resolve) => resolve(makeFakeAccount()))
     }
   }
   return new AddAccountRepositoryStub()
 }
 
-interface ISutTypes {
+type TSut = {
   sut: DbAddAccount
   hasherStub: IHasher
   addAccountRepositoryStub: IAddAccountRepository
   loadAccountByEmailRepositoryStub: ILoadAccountByEmailRepository
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const hasherStub = makeHasher()
   const addAccountRepositoryStub = makeAddAccountRepository()
   const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository()

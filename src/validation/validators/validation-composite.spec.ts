@@ -2,7 +2,7 @@ import { ValidationComposite } from './validation-composite'
 import { MissingParamError } from '@/presentation/errors'
 import { IValidation } from '@/presentation/protocols/validation'
 
-interface ISutTypes {
+interface TSut {
   sut: ValidationComposite
   validationStubs: IValidation[]
 }
@@ -16,7 +16,7 @@ const makeValidation = (): IValidation => {
   return new ValidationStub()
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const validationStubs = [makeValidation(), makeValidation()]
   return {
     sut: new ValidationComposite(validationStubs),

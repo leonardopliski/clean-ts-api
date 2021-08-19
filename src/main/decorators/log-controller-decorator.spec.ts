@@ -1,10 +1,10 @@
 import { LogControllerDecorator } from './log-controller-decorator'
-import { IAccountModel } from '@/domain/models/account'
+import { TAccountModel } from '@/domain/models/account'
 import { ILogErrorRepository } from '@/data/protocols/db/log/log-error-repository'
-import { IHttpRequest, IHttpResponse, IController } from '@/presentation/protocols'
+import { THttpRequest, THttpResponse, IController } from '@/presentation/protocols'
 import { ok, serverError } from '@/presentation/helpers'
 
-const makeFakeRequest = (): IHttpRequest => {
+const makeFakeRequest = (): THttpRequest => {
   return {
     body: {
       name: 'any_name',
@@ -15,20 +15,20 @@ const makeFakeRequest = (): IHttpRequest => {
   }
 }
 
-const makeFakeAccount = (): IAccountModel => ({
+const makeFakeAccount = (): TAccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
 })
 
-const makeFakeServerError = (): IHttpResponse => {
+const makeFakeServerError = (): THttpResponse => {
   const fakeError = new Error()
   fakeError.stack = 'any_stack'
   return serverError(fakeError)
 }
 
-interface ISutTypes {
+interface TSut {
   sut: LogControllerDecorator
   controllerStub: IController
   logErrorRepositoryStub: ILogErrorRepository
@@ -36,7 +36,7 @@ interface ISutTypes {
 
 const makeController = (): IController => {
   class ControllerStub implements IController {
-    async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+    async handle (httpRequest: THttpRequest): Promise<THttpResponse> {
       return await new Promise(resolve => resolve(ok(makeFakeAccount())))
     }
   }
@@ -54,7 +54,7 @@ const makeLogErrorRepository = (): ILogErrorRepository => {
   return logErrorRepositoryStub
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const controllerStub = makeController()
   const logErrorRepositoryStub = makeLogErrorRepository()
   const sut = new LogControllerDecorator(controllerStub, logErrorRepositoryStub)

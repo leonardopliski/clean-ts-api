@@ -1,5 +1,5 @@
-import { ISurveyModel } from '@/domain/models/survey'
+import { TSurveyModel } from '@/domain/models/survey'
 
 export interface ILoadSurveysRepository {
-  loadAll: () => Promise<ISurveyModel[]>
+  loadAll: () => Promise<TSurveyModel[]>
 }

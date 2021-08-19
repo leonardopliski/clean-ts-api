@@ -1,16 +1,16 @@
-import { IHttpRequest, IAuthentication, IValidation } from './login-controller-protocols'
+import { THttpRequest, IAuthentication, IValidation } from './login-controller-protocols'
 import { LoginController } from './login-controller'
 import { MissingParamError } from '@/presentation/errors'
 import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
-import { IAuthenticationModel } from '@/domain/usecases/authentication'
+import { TAuthenticationModel } from '@/domain/usecases/authentication'
 
-interface ISutTypes {
+interface TSut {
   sut: LoginController
   authenticationStub: IAuthentication
   validationStub: IValidation
 }
 
-const makeFakeRequest = (): IHttpRequest => ({
+const makeFakeRequest = (): THttpRequest => ({
   body: {
     email: 'any_email@mail.com',
     password: 'any_password'
@@ -19,7 +19,7 @@ const makeFakeRequest = (): IHttpRequest => ({
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: IAuthenticationModel): Promise<string> {
+    async auth (authentication: TAuthenticationModel): Promise<string> {
       return await new Promise(resolve => resolve('any_token'))
     }
   }
@@ -35,7 +35,7 @@ const makeValidation = (): IValidation => {
   return new ValidationStub()
 }
 
-const makeSut = (): ISutTypes => {
+const makeSut = (): TSut => {
   const authenticationStub = makeAuthentication()
   const validationStub = makeValidation()
   const sut = new LoginController(authenticationStub, validationStub)
