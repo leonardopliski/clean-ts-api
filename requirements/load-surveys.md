@@ -1,4 +1,4 @@
-# List Surveys
+# Load Surveys
 
 > ## Success paths
 
