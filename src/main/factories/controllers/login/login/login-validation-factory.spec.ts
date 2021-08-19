@@ -3,7 +3,7 @@ import { EmailValidation, RequiredFieldValidation, ValidationComposite } from '@
 import { IValidation } from '@/presentation/protocols/validation'
 import { IEmailValidator } from '@/validation/protocols/email-validator'
 
-jest.mock('../../../../../validation/validators/validation-composite')
+jest.mock('@/validation/validators/validation-composite')
 
 const makeEmailValidator = (): IEmailValidator => {
   class EmailValidatorStub implements IEmailValidator {
