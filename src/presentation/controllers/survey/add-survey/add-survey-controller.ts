@@ -1,7 +1,5 @@
-import { IAddSurvey } from '../../../../domain/usecases/add-survey'
-import { badRequest, noContent, serverError } from '../../../helpers'
-import { IValidation } from '../../../protocols'
-import { IController, IHttpRequest, IHttpResponse } from './add-survey-controller-protocols'
+import { IController, IHttpRequest, IHttpResponse, IValidation, IAddSurvey } from './add-survey-controller-protocols'
+import { badRequest, noContent, serverError } from '@/presentation/helpers'
 
 export class AddSurveyController implements IController {
   constructor (

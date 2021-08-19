@@ -1,6 +1,6 @@
-import { IAccountModel, ILoadAccountByToken } from '../../../presentation/middlewares/auth-middleware-protocols'
-import { IDecrypter } from '../../protocols/cryptography/decrypter'
-import { ILoadAccountByTokenRepository } from '../../protocols/db/account/load-account-by-token-repository'
+import { IDecrypter } from '@/data/protocols/cryptography/decrypter'
+import { ILoadAccountByTokenRepository } from '@/data/protocols/db/account/load-account-by-token-repository'
+import { IAccountModel, ILoadAccountByToken } from '@/presentation/middlewares/auth-middleware-protocols'
 
 export class DbLoadAccountByToken implements ILoadAccountByToken {
   constructor (

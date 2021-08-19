@@ -6,6 +6,11 @@
     "esModuleInterop": true,
     "inlineSourceMap": true,
     "inlineSources": true,
+    "rootDir": "src",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["*"],
+    }
   },
   "include": ["src", "tests"],
   "exclude": []
