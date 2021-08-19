@@ -1,10 +1,6 @@
-import { TSurveyAnswerModel } from '@/domain/models/survey'
+import { TSurveyModel } from '@/domain/models/survey'
 
-export type TAddSurveyModel = {
-  question: string
-  answers: TSurveyAnswerModel[]
-  date: Date
-}
+export type TAddSurveyModel = Omit<TSurveyModel, 'id'>
 
 export interface IAddSurvey {
   add: (data: TAddSurveyModel) => Promise<void>
