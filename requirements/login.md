@@ -17,4 +17,4 @@
 3. ✅ Returns the **400** error if the email field is invalid.
 4. ✅ Returns the **401** error if no user is found with the provided data.
 5. ✅ Returns the **500** error if an error is thrown when the access token is being generated.
-6. ✅ Returns the **500** error if an error is thrown when trying to update the user with the generated access token.
+6. ✅ Returns the **500** error if an error is thrown while trying to update the user with the generated access token.

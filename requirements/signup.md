@@ -2,7 +2,7 @@
 
 > ## Success paths
 
-1. ✅ Receives a **POST** request in route **/api/signup**.
+1. ✅ Receives a **POST** request on route **/api/signup**.
 2. ✅ Validates the required fields **name**, **email**, **password** and **passwordConfirmation**.
 3. ✅ Validates that the **password** and **passwordConfirmation** are equals.
 4. ✅ Validates that the **email** field is a valid email.
@@ -20,7 +20,7 @@
 3. ✅ Returns the error **400** if password and passwordConfirmation aren't equals.
 4. ✅ Returns the error **400** if the email field is an invalid e-mail.
 5. ✅ Returns the error **403** if the provided email is already being used.
-6. ✅ Returns the error **500** if an error is thrown when trying to generate an encrypted password
-7. ✅ Returns the error **500** if an error is thrown when trying to create the user account.
-8. ✅ Returns the error **500** if an error is thrown when trying to generate the access token.
-9. ✅ Returns the error **500** if an error is thrown when trying to update the user with the generated access token.
+6. ✅ Returns the error **500** if an error is thrown while trying to generate an encrypted password
+7. ✅ Returns the error **500** if an error is thrown while trying to create the user account.
+8. ✅ Returns the error **500** if an error is thrown while trying to generate the access token.
+9. ✅ Returns the error **500** if an error is thrown while trying to update the user with the generated access token.
