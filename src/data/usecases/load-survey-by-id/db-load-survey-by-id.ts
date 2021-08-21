@@ -1,6 +1,4 @@
-import { ILoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository'
-import { TSurveyModel } from '@/domain/models/survey'
-import { ILoadSurveyById } from '@/domain/usecases/load-survey-by-id'
+import { ILoadSurveyByIdRepository, TSurveyModel, ILoadSurveyById } from './db-load-survey-by-id-protocols'
 
 export class DbLoadSurveyById implements ILoadSurveyById {
   constructor (private readonly loadSurveyByIdRepository: ILoadSurveyByIdRepository) { }
