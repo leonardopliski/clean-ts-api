@@ -6,4 +6,5 @@ export type THttpResponse = {
 export type THttpRequest = {
   headers?: Record<string, any>
   body?: any
+  params?: Record<string, any>
 }
