@@ -1,4 +1,4 @@
-import { TAddAccountModel } from '@/domain/usecases/add-account'
+import { TAddAccountModel } from '@/domain/usecases/account/add-account'
 import { TAccountModel } from '@/domain/models/account'
 
 export interface IAddAccountRepository {

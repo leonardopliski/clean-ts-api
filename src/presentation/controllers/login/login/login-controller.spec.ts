@@ -2,7 +2,7 @@ import { THttpRequest, IAuthentication, IValidation } from './login-controller-p
 import { LoginController } from './login-controller'
 import { MissingParamError } from '@/presentation/errors'
 import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
-import { TAuthenticationModel } from '@/domain/usecases/authentication'
+import { TAuthenticationModel } from '@/domain/usecases/account/authentication'
 
 interface TSut {
   sut: LoginController

@@ -3,7 +3,7 @@ import {
   ISaveSurveyResultRepository,
   TSaveSurveyResultModel,
   TSurveyResultModel
-} from '@/data/usecases/save-survey-result/db-save-survey-result-protocols'
+} from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
 
 export class SurveyResultMongoRepository implements ISaveSurveyResultRepository {
   async save (data: TSaveSurveyResultModel): Promise<TSurveyResultModel> {
