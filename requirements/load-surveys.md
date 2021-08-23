@@ -2,7 +2,7 @@
 
 > ## Success paths
 
-1. ✅Receives a **GET** request on route **/api/surveys**.
+1. ✅ Receives a **GET** request on route **/api/surveys**.
 2. ✅ Validates if the request was done by an user.
 3. ✅ Returns **204** if there are no surveys.
 4. ✅ Returns **200** with the surveys.
