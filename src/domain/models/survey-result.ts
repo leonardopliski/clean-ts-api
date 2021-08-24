@@ -2,11 +2,11 @@ export type TSurveyResultModel = {
   id: string
   surveyId: string
   accountId: string
-  answer: string
+  answer: TSurveyResultAnswerModel[]
   date: Date
 }
 
-export type TSurveyAnswerModel = {
+export type TSurveyResultAnswerModel = {
   image?: string
   answer: string
 }
