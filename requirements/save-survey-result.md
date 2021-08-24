@@ -8,7 +8,7 @@
 4. ✅ Validates if the parameter **answer**  is a valid answer.
 5. ✅ **Creates** a survey result with the provided data if there is no record stored.
 6. ✅ **Updates** a survey result with the provided data if there is already a record stored.
-7. ⛔ Returns **200**, with the survey results.
+7. ✅ Returns **200** with the survey results.
 
 > ## Exceptions
 
