@@ -2,7 +2,7 @@ export type TSurveyResultModel = {
   id: string
   surveyId: string
   accountId: string
-  answer: TSurveyResultAnswerModel[]
+  answer: string
   date: Date
 }
 
