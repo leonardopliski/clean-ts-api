@@ -1,12 +1,12 @@
 import { MongoHelper } from '../helpers/mongo-helper'
 import {
   ISaveSurveyResultRepository,
-  TSaveSurveyResultModel,
+  TSaveSurveyResultParams,
   TSurveyResultModel
 } from '@/data/usecases/survey-result/save-survey-result/db-save-survey-result-protocols'
 
 export class SurveyResultMongoRepository implements ISaveSurveyResultRepository {
-  async save (data: TSaveSurveyResultModel): Promise<TSurveyResultModel> {
+  async save (data: TSaveSurveyResultParams): Promise<TSurveyResultModel> {
     console.error(data)
     const surveyResultCollection = await MongoHelper.getCollection(
       'surveyResults'

@@ -1,5 +1,5 @@
 import { SaveSurveyResultController } from './save-survey-result-controller'
-import { THttpRequest, ILoadSurveyById, TSurveyModel, ISaveSurveyResult, TSurveyResultModel, TSaveSurveyResultModel } from './save-survey-result-controller-protocols'
+import { THttpRequest, ILoadSurveyById, TSurveyModel, ISaveSurveyResult, TSurveyResultModel, TSaveSurveyResultParams } from './save-survey-result-controller-protocols'
 import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
 import MockDate from 'mockdate'
@@ -45,7 +45,7 @@ const makeLoadSurveyById = (): ILoadSurveyById => {
 
 const makeSaveSurveyResult = (): ISaveSurveyResult => {
   class SaveSurveyResultStub implements ISaveSurveyResult {
-    async save (data: TSaveSurveyResultModel): Promise<TSurveyResultModel> {
+    async save (data: TSaveSurveyResultParams): Promise<TSurveyResultModel> {
       return await new Promise(resolve => resolve(makeFakeSurveyResult()))
     }
   }

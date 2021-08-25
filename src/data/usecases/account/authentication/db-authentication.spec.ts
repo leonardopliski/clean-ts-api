@@ -1,7 +1,7 @@
 import { DbAuthentication } from './db-authentication'
 import {
   TAccountModel,
-  TAuthenticationModel,
+  TAuthenticationParams,
   IHashComparer,
   IEncrypter,
   ILoadAccountByEmailRepository,
@@ -24,7 +24,7 @@ const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   return new LoadAccountByEmailRepositoryStub()
 }
 
-const makeFakeAuthentication = (): TAuthenticationModel => ({
+const makeFakeAuthentication = (): TAuthenticationParams => ({
   email: 'any_email@mail.com',
   password: 'any_password'
 })

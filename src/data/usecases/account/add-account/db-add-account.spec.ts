@@ -2,7 +2,7 @@ import {
   IHasher,
   IAddAccountRepository,
   TAccountModel,
-  TAddAccountModel,
+  TAddAccountParams,
   ILoadAccountByEmailRepository
 } from './db-add-account-protocols'
 import { DbAddAccount } from './db-add-account'
@@ -14,7 +14,7 @@ const makeFakeAccount = (): TAccountModel => ({
   password: 'hashed_password'
 })
 
-const makeFakeAccountData = (): TAddAccountModel => ({
+const makeFakeAccountData = (): TAddAccountParams => ({
   name: 'valid_name',
   email: 'valid_email@mail.com',
   password: 'valid_password'
@@ -40,7 +40,7 @@ const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
 
 const makeAddAccountRepository = (): IAddAccountRepository => {
   class AddAccountRepositoryStub implements IAddAccountRepository {
-    async add (accountData: TAddAccountModel): Promise<TAccountModel> {
+    async add (accountData: TAddAccountParams): Promise<TAccountModel> {
       return await new Promise((resolve) => resolve(makeFakeAccount()))
     }
   }

@@ -2,7 +2,7 @@ import { THttpRequest, IAuthentication, IValidation } from './login-controller-p
 import { LoginController } from './login-controller'
 import { MissingParamError } from '@/presentation/errors'
 import { badRequest, ok, serverError, unauthorized } from '@/presentation/helpers'
-import { TAuthenticationModel } from '@/domain/usecases/account/authentication'
+import { TAuthenticationParams } from '@/domain/usecases/account/authentication'
 
 interface TSut {
   sut: LoginController
@@ -19,7 +19,7 @@ const makeFakeRequest = (): THttpRequest => ({
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: TAuthenticationModel): Promise<string> {
+    async auth (authentication: TAuthenticationParams): Promise<string> {
       return await new Promise(resolve => resolve('any_token'))
     }
   }

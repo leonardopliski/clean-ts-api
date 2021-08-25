@@ -1,5 +1,5 @@
 import { SignUpController } from './signup-controller'
-import { IAddAccount, TAddAccountModel, TAccountModel, THttpRequest, IAuthentication, TAuthenticationModel, IValidation } from './signup-controller-protocols'
+import { IAddAccount, TAddAccountParams, TAccountModel, THttpRequest, IAuthentication, TAuthenticationParams, IValidation } from './signup-controller-protocols'
 import { EmailInUseError, MissingParamError, ServerError } from '@/presentation/errors'
 import { ok, serverError, badRequest, forbidden } from '@/presentation/helpers/http/http-helper'
 
@@ -12,7 +12,7 @@ const makeFakeAccount = (): TAccountModel => ({
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth (authentication: TAuthenticationModel): Promise<string> {
+    async auth (authentication: TAuthenticationParams): Promise<string> {
       return await new Promise(resolve => resolve('any_token'))
     }
   }
@@ -20,7 +20,7 @@ const makeAuthentication = (): IAuthentication => {
 }
 const makeAddAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    async add (account: TAddAccountModel): Promise<TAccountModel> {
+    async add (account: TAddAccountParams): Promise<TAccountModel> {
       return await new Promise(resolve => resolve(makeFakeAccount()))
     }
   }

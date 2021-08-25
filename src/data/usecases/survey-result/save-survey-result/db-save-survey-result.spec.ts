@@ -1,8 +1,8 @@
-import { TSaveSurveyResultModel, TSurveyResultModel, ISaveSurveyResultRepository } from './db-save-survey-result-protocols'
+import { TSaveSurveyResultParams, TSurveyResultModel, ISaveSurveyResultRepository } from './db-save-survey-result-protocols'
 import { DbSaveSurveyResult } from './db-save-survey-result'
 import MockDate from 'mockdate'
 
-const makeFakeSurveyResultData = (): TSaveSurveyResultModel => ({
+const makeFakeSurveyResultData = (): TSaveSurveyResultParams => ({
   surveyId: 'any_survey_id',
   accountId: 'any_account_id',
   answer: 'any_answer',
@@ -15,7 +15,7 @@ const makeFakeSurveyResult = (): TSurveyResultModel => Object.assign({}, makeFak
 
 const makeSaveSurveyResultRepository = (): ISaveSurveyResultRepository => {
   class SaveSurveyResultRepositoryStub implements ISaveSurveyResultRepository {
-    async save (data: TSaveSurveyResultModel): Promise<TSurveyResultModel> {
+    async save (data: TSaveSurveyResultParams): Promise<TSurveyResultModel> {
       return await new Promise(resolve => resolve(makeFakeSurveyResult()))
     }
   }
