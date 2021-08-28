@@ -8,7 +8,7 @@ import { mockSurvey, mockSurveyModels } from '@/domain/test'
 export const mockAddSurveyRepository = (): IAddSurveyRepository => {
   class AddSurveyRepositoryStub implements IAddSurveyRepository {
     async add (surveyData: TAddSurveyParams): Promise<void> {
-      return await new Promise(resolve => resolve())
+      return await Promise.resolve()
     }
   }
   return new AddSurveyRepositoryStub()
@@ -17,7 +17,7 @@ export const mockAddSurveyRepository = (): IAddSurveyRepository => {
 export const mockLoadSurveyByIdRepository = (): ILoadSurveyByIdRepository => {
   class LoadSurveyByIdRepositoryStub implements ILoadSurveyByIdRepository {
     async loadById (id: string): Promise<TSurveyModel> {
-      return await new Promise(resolve => resolve(mockSurvey()))
+      return await Promise.resolve(mockSurvey())
     }
   }
   return new LoadSurveyByIdRepositoryStub()
@@ -26,7 +26,7 @@ export const mockLoadSurveyByIdRepository = (): ILoadSurveyByIdRepository => {
 export const mockLoadSurveysRepository = (): ILoadSurveysRepository => {
   class LoadSurveysRepositoryStub implements ILoadSurveysRepository {
     async loadAll (): Promise<TSurveyModel[]> {
-      return await new Promise(resolve => resolve(mockSurveyModels()))
+      return await Promise.resolve(mockSurveyModels())
     }
   }
   return new LoadSurveysRepositoryStub()

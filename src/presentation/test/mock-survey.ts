@@ -7,7 +7,7 @@ import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 export const mockAddSurvey = (): IAddSurvey => {
   class AddSurveyStub implements IAddSurvey {
     async add (data: TAddSurveyParams): Promise<void> {
-      return await new Promise(resolve => resolve(null))
+      return await Promise.resolve(null)
     }
   }
   const addSurveyStub = new AddSurveyStub()
@@ -17,7 +17,7 @@ export const mockAddSurvey = (): IAddSurvey => {
 export const mockLoadSurveys = (): ILoadSurveys => {
   class LoadSurveysStub implements ILoadSurveys {
     async load (): Promise<TSurveyModel[]> {
-      return await new Promise(resolve => resolve(mockSurveyModels()))
+      return await Promise.resolve(mockSurveyModels())
     }
   }
   return new LoadSurveysStub()
@@ -26,7 +26,7 @@ export const mockLoadSurveys = (): ILoadSurveys => {
 export const mockLoadSurveyById = (): ILoadSurveyById => {
   class LoadSurveyByIdStub implements ILoadSurveyById {
     async loadById (id: string): Promise<TSurveyModel> {
-      return await new Promise(resolve => resolve(mockSurvey()))
+      return await Promise.resolve(mockSurvey())
     }
   }
   return new LoadSurveyByIdStub()

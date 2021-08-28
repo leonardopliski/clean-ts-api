@@ -31,7 +31,7 @@ interface TSut {
 const makeController = (): IController => {
   class ControllerStub implements IController {
     async handle (httpRequest: THttpRequest): Promise<THttpResponse> {
-      return await new Promise(resolve => resolve(ok(mockAccountModel())))
+      return await Promise.resolve(ok(mockAccountModel()))
     }
   }
   const controllerStub = new ControllerStub()
@@ -65,7 +65,7 @@ describe('LogController Decorator', () => {
     const { sut, controllerStub, logErrorRepositoryStub } = makeSut()
 
     const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
-    jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(new Promise((resolve) => resolve(makeFakeServerError())))
+    jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(Promise.resolve(makeFakeServerError()))
     const httpRequest = makeFakeRequest()
     await sut.handle(httpRequest)
     expect(logSpy).toBeCalledWith('any_stack')

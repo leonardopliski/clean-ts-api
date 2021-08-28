@@ -9,7 +9,7 @@ import { mockAccountModel } from '@/domain/test'
 export const mockAddAccountRepository = (): IAddAccountRepository => {
   class AddAccountRepositoryStub implements IAddAccountRepository {
     async add (accountData: TAddAccountParams): Promise<TAccountModel> {
-      return await new Promise((resolve) => resolve(mockAccountModel()))
+      return await Promise.resolve(mockAccountModel())
     }
   }
   return new AddAccountRepositoryStub()
@@ -18,7 +18,7 @@ export const mockAddAccountRepository = (): IAddAccountRepository => {
 export const mockLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
   class LoadAccountByEmailRepositoryStub implements ILoadAccountByEmailRepository {
     async loadByEmail (email: string): Promise<TAccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
+      return await Promise.resolve(mockAccountModel())
     }
   }
   return new LoadAccountByEmailRepositoryStub()
@@ -27,7 +27,7 @@ export const mockLoadAccountByEmailRepository = (): ILoadAccountByEmailRepositor
 export const mockLoadAccountByTokenRepository = (): ILoadAccountByTokenRepository => {
   class LoadAccountByTokenRepositoryStub implements ILoadAccountByTokenRepository {
     async loadByToken (token: string, role?: string): Promise<TAccountModel> {
-      return await new Promise(resolve => resolve(mockAccountModel()))
+      return await Promise.resolve(mockAccountModel())
     }
   }
   const loadAccountByTokenRepositoryStub = new LoadAccountByTokenRepositoryStub()
@@ -37,7 +37,7 @@ export const mockLoadAccountByTokenRepository = (): ILoadAccountByTokenRepositor
 export const mockUpdateAccessTokenRepositoryStub = (): IUpdateAccessTokenRepository => {
   class UpdateAcccessTokenRepositoryStub implements IUpdateAccessTokenRepository {
     async updateAccessToken (id: string, token: string): Promise<void> {
-      return await new Promise((resolve) => resolve())
+      return await Promise.resolve()
     }
   }
   return new UpdateAcccessTokenRepositoryStub()

@@ -6,7 +6,7 @@ import { IDecrypter } from '../protocols/cryptography/decrypter'
 export const mockHasher = (): IHasher => {
   class HasherStub implements IHasher {
     async hash (value: string): Promise<string> {
-      return await new Promise((resolve) => resolve('hashed_password'))
+      return await Promise.resolve('hashed_password')
     }
   }
   return new HasherStub()
@@ -15,7 +15,7 @@ export const mockHasher = (): IHasher => {
 export const mockDecrypter = (): IDecrypter => {
   class DecrypterStub implements IDecrypter {
     async decrypt (value: string): Promise<string> {
-      return await new Promise(resolve => resolve('any_token'))
+      return await Promise.resolve('any_token')
     }
   }
   const decrypterStub = new DecrypterStub()
@@ -25,7 +25,7 @@ export const mockDecrypter = (): IDecrypter => {
 export const mockEncrypter = (): IEncrypter => {
   class EncrypterStub implements IEncrypter {
     async encrypt (id: string): Promise<string> {
-      return await new Promise((resolve) => resolve('any_token'))
+      return await Promise.resolve('any_token')
     }
   }
   return new EncrypterStub()
@@ -34,7 +34,7 @@ export const mockEncrypter = (): IEncrypter => {
 export const mockHashComparer = (): IHashComparer => {
   class HashComparerStub implements IHashComparer {
     async compare (value: string, hash: string): Promise<boolean> {
-      return await new Promise((resolve) => resolve(true))
+      return await Promise.resolve(true)
     }
   }
   return new HashComparerStub()
