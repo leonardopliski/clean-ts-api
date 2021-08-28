@@ -1,6 +1,8 @@
-import { THttpRequest, IValidation, IAddSurvey, TAddSurveyParams } from './add-survey-controller-protocols'
+import { THttpRequest, IValidation, IAddSurvey } from './add-survey-controller-protocols'
 import { AddSurveyController } from './add-survey-controller'
+import { throwError } from '@/domain/test'
 import { badRequest, noContent, serverError } from '@/presentation/helpers'
+import { mockAddSurvey, mockValidation } from '@/presentation/test'
 import MockDate from 'mockdate'
 
 interface TSut {
@@ -22,29 +24,9 @@ const makeFakeRequest = (): THttpRequest => ({
   }
 })
 
-const makeValidation = (): IValidation => {
-  class ValidationStub implements IValidation {
-    validate (input: any): Error {
-      return null
-    }
-  }
-  const validationStub = new ValidationStub()
-  return validationStub
-}
-
-const makeAddSurvey = (): IAddSurvey => {
-  class AddSurveyStub implements IAddSurvey {
-    async add (data: TAddSurveyParams): Promise<void> {
-      return await new Promise(resolve => resolve(null))
-    }
-  }
-  const addSurveyStub = new AddSurveyStub()
-  return addSurveyStub
-}
-
 const makeSut = (): TSut => {
-  const validationStub = makeValidation()
-  const addSurveyStub = makeAddSurvey()
+  const validationStub = mockValidation()
+  const addSurveyStub = mockAddSurvey()
   const sut = new AddSurveyController(validationStub, addSurveyStub)
   return {
     sut,
@@ -88,7 +70,7 @@ describe('AddSurvey Controller', () => {
 
   test('should return 500 if AddSurvey throws', async () => {
     const { sut, addSurveyStub } = makeSut()
-    jest.spyOn(addSurveyStub, 'add').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(addSurveyStub, 'add').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })

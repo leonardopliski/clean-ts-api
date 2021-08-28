@@ -1,14 +1,9 @@
-import { TAccountModel, ILoadAccountByToken, THttpRequest } from './auth-middleware-protocols'
+import { ILoadAccountByToken, THttpRequest } from './auth-middleware-protocols'
 import { AuthMiddleware } from './auth-middleware'
+import { throwError } from '@/domain/test'
 import { AccessDeniedError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
-
-const makeFakeAccount = (): TAccountModel => ({
-  id: 'valid_id',
-  name: 'valid_name',
-  email: 'valid_email@mail.com',
-  password: 'hashed_password'
-})
+import { mockLoadAccountByToken } from '../test'
 
 const makeFakeRequest = (): THttpRequest => ({
   headers: {
@@ -21,18 +16,8 @@ interface TSut {
   loadAccountByTokenStub: ILoadAccountByToken
 }
 
-const makeLoadAccountByToken = (): ILoadAccountByToken => {
-  class LoadAccountByTokenStub implements ILoadAccountByToken {
-    async load (accessToken: string, role?: string): Promise<TAccountModel> {
-      return await new Promise(resolve => resolve(makeFakeAccount()))
-    }
-  }
-  const loadAccountByTokenStub = new LoadAccountByTokenStub()
-  return loadAccountByTokenStub
-}
-
 const makeSut = (role?: string): TSut => {
-  const loadAccountByTokenStub = makeLoadAccountByToken()
+  const loadAccountByTokenStub = mockLoadAccountByToken()
   const sut = new AuthMiddleware(loadAccountByTokenStub, role)
   return {
     sut,
@@ -66,13 +51,13 @@ describe('Auth Middleware', () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(ok({
-      accountId: 'valid_id'
+      accountId: 'any_id'
     }))
   })
 
   test('should return 500 if LoadAccountByToken throws', async () => {
     const { sut, loadAccountByTokenStub } = makeSut()
-    jest.spyOn(loadAccountByTokenStub, 'load').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    jest.spyOn(loadAccountByTokenStub, 'load').mockImplementationOnce(throwError)
     const httpResponse = await sut.handle(makeFakeRequest())
     expect(httpResponse).toEqual(serverError(new Error()))
   })

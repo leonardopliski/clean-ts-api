@@ -1,4 +1,5 @@
 import { ValidationComposite } from './validation-composite'
+import { mockValidation } from '@/validation/test'
 import { MissingParamError } from '@/presentation/errors'
 import { IValidation } from '@/presentation/protocols/validation'
 
@@ -7,17 +8,8 @@ interface TSut {
   validationStubs: IValidation[]
 }
 
-const makeValidation = (): IValidation => {
-  class ValidationStub implements IValidation {
-    validate (input: any): Error {
-      return null
-    }
-  }
-  return new ValidationStub()
-}
-
 const makeSut = (): TSut => {
-  const validationStubs = [makeValidation(), makeValidation()]
+  const validationStubs = [mockValidation(), mockValidation()]
   return {
     sut: new ValidationComposite(validationStubs),
     validationStubs
