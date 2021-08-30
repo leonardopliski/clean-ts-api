@@ -4,14 +4,14 @@ export const surveySchema = {
     id: {
       type: 'string'
     },
-    question: {
+    surveyId: {
       type: 'string'
     },
-    answers: {
-      type: 'array',
-      items: {
-        $ref: '#/schemas/surveyAnswer'
-      }
+    accountId: {
+      type: 'string'
+    },
+    answer: {
+      type: 'string'
     },
     date: {
       type: 'string'
