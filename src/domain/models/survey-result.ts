@@ -1,12 +1,13 @@
 export type TSurveyResultModel = {
-  id: string
   surveyId: string
-  accountId: string
-  answer: string
+  question: string
+  answers: TSurveyResultAnswerModel[]
   date: Date
 }
 
-export type TSurveyResultAnswerModel = {
+type TSurveyResultAnswerModel = {
   image?: string
   answer: string
+  count: number
+  percent: number
 }
