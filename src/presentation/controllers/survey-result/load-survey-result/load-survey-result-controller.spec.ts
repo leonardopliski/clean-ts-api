@@ -1,5 +1,5 @@
 import { LoadSurveyResultController } from './load-survey-result-controller'
-import { THttpRequest } from './load-survey-result-controller-protocols'
+import { THttpRequest, ILoadSurveyById } from './load-survey-result-controller-protocols'
 import { mockLoadSurveyById } from '@/presentation/test'
 
 const makeFakeRequest = (): THttpRequest => ({
@@ -8,10 +8,23 @@ const makeFakeRequest = (): THttpRequest => ({
   }
 })
 
+type TSut = {
+  sut: LoadSurveyResultController
+  loadSurveyByIdStub: ILoadSurveyById
+}
+
+const makeSut = (): TSut => {
+  const loadSurveyByIdStub = mockLoadSurveyById()
+  const sut = new LoadSurveyResultController(loadSurveyByIdStub)
+  return {
+    sut,
+    loadSurveyByIdStub
+  }
+}
+
 describe('LoadSurveyResult Controller', () => {
   test('should call LoadSurveyById with correct value', async () => {
-    const loadSurveyByIdStub = mockLoadSurveyById()
-    const sut = new LoadSurveyResultController(loadSurveyByIdStub)
+    const { sut, loadSurveyByIdStub } = makeSut()
     const loadByIdSpy = jest.spyOn(loadSurveyByIdStub, 'loadById')
     await sut.handle(makeFakeRequest())
     expect(loadByIdSpy).toHaveBeenCalledWith('any_id')
