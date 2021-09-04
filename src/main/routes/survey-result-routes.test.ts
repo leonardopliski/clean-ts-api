@@ -67,13 +67,21 @@ describe('Survey Routes', () => {
         ],
         date: new Date()
       })
+      const surveyId: string = res.ops[0]._id
       await request(app)
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        .put(`/api/surveys/${res.ops[0]._id}/results`)
+        .put(`/api/surveys/${surveyId}/results`)
         .set('x-access-token', accessToken)
         .send({
           answer: 'any_answer'
         })
+        .expect(403)
+    })
+  })
+
+  describe('GET /surveys/:surveyId/results', () => {
+    test('should return 403 when loading a survey result without access token', async () => {
+      await request(app)
+        .get('/api/surveys/any_id/results')
         .expect(403)
     })
   })
