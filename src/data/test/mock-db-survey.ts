@@ -3,31 +3,33 @@ import { ILoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-surve
 import { ILoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
 import { TAddSurveyParams } from '@/domain/usecases/survey/add-survey'
 import { TSurveyModel } from '@/domain/models/survey'
-import { mockSurvey, mockSurveyModels } from '@/domain/test'
+import { mockSurveyModel, mockSurveyModels } from '@/domain/test'
 
-export const mockAddSurveyRepository = (): IAddSurveyRepository => {
-  class AddSurveyRepositoryStub implements IAddSurveyRepository {
-    async add (surveyData: TAddSurveyParams): Promise<void> {
-      return await Promise.resolve()
-    }
+export class AddSurveyRepositorySpy implements IAddSurveyRepository {
+  addSurveyParams: TAddSurveyParams
+
+  async add (data: TAddSurveyParams): Promise<void> {
+    this.addSurveyParams = data
+    return await Promise.resolve()
   }
-  return new AddSurveyRepositoryStub()
 }
 
-export const mockLoadSurveyByIdRepository = (): ILoadSurveyByIdRepository => {
-  class LoadSurveyByIdRepositoryStub implements ILoadSurveyByIdRepository {
-    async loadById (id: string): Promise<TSurveyModel> {
-      return await Promise.resolve(mockSurvey())
-    }
+export class LoadSurveyByIdRepositorySpy implements ILoadSurveyByIdRepository {
+  surveyModel = mockSurveyModel()
+  id: string
+
+  async loadById (id: string): Promise<TSurveyModel> {
+    this.id = id
+    return await Promise.resolve(this.surveyModel)
   }
-  return new LoadSurveyByIdRepositoryStub()
 }
 
-export const mockLoadSurveysRepository = (): ILoadSurveysRepository => {
-  class LoadSurveysRepositoryStub implements ILoadSurveysRepository {
-    async loadAll (): Promise<TSurveyModel[]> {
-      return await Promise.resolve(mockSurveyModels())
-    }
+export class LoadSurveysRepositorySpy implements ILoadSurveysRepository {
+  surveyModels = mockSurveyModels()
+  callsCount = 0
+
+  async loadAll (): Promise<TSurveyModel[]> {
+    this.callsCount++
+    return await Promise.resolve(this.surveyModels)
   }
-  return new LoadSurveysRepositoryStub()
 }

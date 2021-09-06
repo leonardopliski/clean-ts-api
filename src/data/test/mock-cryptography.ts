@@ -2,40 +2,46 @@ import { IHasher } from '../protocols/cryptography/hasher'
 import { IHashComparer } from '../protocols/cryptography/hash-comparer'
 import { IEncrypter } from '../protocols/cryptography/encrypter'
 import { IDecrypter } from '../protocols/cryptography/decrypter'
+import faker from 'faker'
 
-export const mockHasher = (): IHasher => {
-  class HasherStub implements IHasher {
-    async hash (value: string): Promise<string> {
-      return await Promise.resolve('hashed_password')
-    }
+export class HasherSpy implements IHasher {
+  digest = faker.datatype.uuid()
+  plainText: string
+
+  async hash (plainText: string): Promise<string> {
+    this.plainText = plainText
+    return await Promise.resolve(this.digest)
   }
-  return new HasherStub()
 }
 
-export const mockDecrypter = (): IDecrypter => {
-  class DecrypterStub implements IDecrypter {
-    async decrypt (value: string): Promise<string> {
-      return await Promise.resolve('any_token')
-    }
+export class DecrypterSpy implements IDecrypter {
+  plainText = faker.internet.password()
+  cipherText: string
+
+  async decrypt (cipherText: string): Promise<string> {
+    this.cipherText = cipherText
+    return await Promise.resolve(this.plainText)
   }
-  const decrypterStub = new DecrypterStub()
-  return decrypterStub
 }
 
-export const mockEncrypter = (): IEncrypter => {
-  class EncrypterStub implements IEncrypter {
-    async encrypt (id: string): Promise<string> {
-      return await Promise.resolve('any_token')
-    }
+export class EncrypterSpy implements IEncrypter {
+  cipherText = faker.datatype.uuid()
+  plainText: string
+
+  async encrypt (plainText: string): Promise<string> {
+    this.plainText = plainText
+    return await Promise.resolve(this.cipherText)
   }
-  return new EncrypterStub()
 }
 
-export const mockHashComparer = (): IHashComparer => {
-  class HashComparerStub implements IHashComparer {
-    async compare (value: string, hash: string): Promise<boolean> {
-      return await Promise.resolve(true)
-    }
+export class HashComparerSpy implements IHashComparer {
+  plainText: string
+  digest: string
+  isValid = true
+
+  async compare (plainText: string, digest: string): Promise<boolean> {
+    this.plainText = plainText
+    this.digest = digest
+    return await Promise.resolve(this.isValid)
   }
-  return new HashComparerStub()
 }

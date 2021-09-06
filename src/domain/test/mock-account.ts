@@ -1,16 +1,22 @@
 import { TAccountModel } from '@/domain/models/account'
 import { TAddAccountParams } from '@/domain/usecases/account/add-account'
 import { TAuthenticationParams } from '@/domain/usecases/account/authentication'
+import faker from 'faker'
 
 export const mockAddAccountParams = (): TAddAccountParams => ({
-  name: 'any_name',
-  email: 'any_email@mail.com',
-  password: 'any_password'
+  name: faker.name.findName(),
+  email: faker.internet.email(),
+  password: faker.internet.password()
 })
 
-export const mockAccountModel = (): TAccountModel => Object.assign({}, mockAddAccountParams(), { id: 'any_id' })
+export const mockAccountModel = (): TAccountModel => ({
+  id: faker.datatype.uuid(),
+  name: faker.name.findName(),
+  email: faker.internet.email(),
+  password: faker.internet.password()
+})
 
-export const mockFakeAuthentication = (): TAuthenticationParams => ({
-  email: 'any_email@mail.com',
-  password: 'any_password'
+export const mockAuthenticationParams = (): TAuthenticationParams => ({
+  email: faker.internet.email(),
+  password: faker.internet.password()
 })

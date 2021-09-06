@@ -15,10 +15,10 @@ export class DbAuthentication implements IAuthentication {
     private readonly updateAccessTokenRepository: IUpdateAccessTokenRepository
   ) { }
 
-  async auth (authentication: TAuthenticationParams): Promise<string> {
-    const account = await this.loadAccountByEmailRepository.loadByEmail(authentication.email)
+  async auth (authenticationParams: TAuthenticationParams): Promise<string> {
+    const account = await this.loadAccountByEmailRepository.loadByEmail(authenticationParams.email)
     if (account) {
-      const isValidPassword = await this.hashComparer.compare(authentication.password, account.password)
+      const isValidPassword = await this.hashComparer.compare(authenticationParams.password, account.password)
       if (isValidPassword) {
         const accessToken = await this.tokenGenerator.encrypt(account.id)
         await this.updateAccessTokenRepository.updateAccessToken(account.id, accessToken)

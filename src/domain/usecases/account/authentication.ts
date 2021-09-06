@@ -4,5 +4,5 @@ export type TAuthenticationParams = {
 }
 
 export interface IAuthentication {
-  auth: (authentication: TAuthenticationParams) => Promise<string>
+  auth: (authenticationParams: TAuthenticationParams) => Promise<string>
 }

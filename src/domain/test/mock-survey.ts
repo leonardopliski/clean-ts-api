@@ -1,53 +1,37 @@
 import { TSurveyModel } from '@/domain/models/survey'
 import { TAddSurveyParams } from '@/domain/usecases/survey/add-survey'
+import faker from 'faker'
 
-export const mockSurvey = (): TSurveyModel => ({
-  id: 'any_id',
-  question: 'any_question',
+export const mockSurveyModel = (): TSurveyModel => ({
+  id: faker.datatype.uuid(),
+  question: faker.random.words(),
   answers: [
     {
-      answer: 'any_answer'
+      answer: faker.random.word()
     },
     {
-      answer: 'other_answer',
-      image: 'any_image'
+      answer: faker.random.word(),
+      image: faker.image.imageUrl()
     }
   ],
-  date: new Date()
+  date: faker.date.recent()
 })
 
-export const mockSurveyModels = (): TSurveyModel[] => ([
-  {
-    id: 'any_id',
-    question: 'any_question',
-    answers: [
-      {
-        image: 'any_image',
-        answer: 'any_answer'
-      }
-    ],
-    date: new Date()
-  },
-  {
-    id: 'other_id',
-    question: 'other_question',
-    answers: [
-      {
-        image: 'other_image',
-        answer: 'other_answer'
-      }
-    ],
-    date: new Date()
-  }
-])
+export const mockSurveyModels = (): TSurveyModel[] => [
+  mockSurveyModel(),
+  mockSurveyModel()
+]
 
 export const mockAddSurveyParams = (): TAddSurveyParams => ({
-  question: 'any_question',
+  question: faker.random.words(),
   answers: [
     {
-      image: 'any_image',
-      answer: 'any_answer'
+      image: faker.image.imageUrl(),
+      answer: faker.random.word()
+    },
+    {
+      answer: faker.random.word()
     }
   ],
-  date: new Date()
+  date: faker.date.recent()
 })
