@@ -1,4 +1,4 @@
-import { THttpRequest, IValidation, IAddSurvey } from './add-survey-controller-protocols'
+import { THttpRequest } from './add-survey-controller-protocols'
 import { AddSurveyController } from './add-survey-controller'
 import { badRequest, noContent, serverError } from '@/presentation/helpers'
 import { ValidationSpy, AddSurveySpy } from '@/presentation/test'
