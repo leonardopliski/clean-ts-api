@@ -1,5 +1,5 @@
 import { TSurveyModel } from '@/domain/models/survey'
 
 export interface ILoadSurveys {
-  load: () => Promise<TSurveyModel[]>
+  load: (accountId: string) => Promise<TSurveyModel[]>
 }
