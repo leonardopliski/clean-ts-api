@@ -1,8 +1,9 @@
 import { TAccountModel } from '@/domain/models/account'
 import { IAuthentication, TAuthenticationParams } from '@/domain/usecases/account/authentication'
 import { IAddAccount, TAddAccountParams } from '@/domain/usecases/account/add-account'
-import { mockAccountModel } from '@/domain/test'
 import { ILoadAccountByToken } from '@/domain/usecases/account/load-account-by-token'
+import { mockAccountModel } from '@/domain/test'
+import { TAuthenticationModel } from '@/domain/models/authentication-model'
 import faker from 'faker'
 
 export class AddAccountSpy implements IAddAccount {
@@ -17,11 +18,14 @@ export class AddAccountSpy implements IAddAccount {
 
 export class AuthenticationSpy implements IAuthentication {
   authenticationParams: TAuthenticationParams
-  token = faker.datatype.uuid()
+  authenticationModel: TAuthenticationModel = {
+    accessToken: faker.datatype.uuid(),
+    name: faker.name.findName()
+  }
 
-  async auth (authenticationParams: TAuthenticationParams): Promise<string> {
+  async auth (authenticationParams: TAuthenticationParams): Promise<TAuthenticationModel> {
     this.authenticationParams = authenticationParams
-    return await Promise.resolve(this.token)
+    return await Promise.resolve(this.authenticationModel)
   }
 }
 
