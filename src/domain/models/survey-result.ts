@@ -10,4 +10,5 @@ type TSurveyResultAnswerModel = {
   answer: string
   count: number
   percent: number
+  isCurrentAccountAnswer: boolean
 }

@@ -16,9 +16,11 @@ export class SaveSurveyResultRepositorySpy implements ISaveSurveyResultRepositor
 export class LoadSurveyResultRepositorySpy implements ILoadSurveyResultRepository {
   surveyResultModel = mockSurveyResultModel()
   surveyId: string
+  accountId: string
 
-  async loadBySurveyId (surveyId: string): Promise<TSurveyResultModel> {
+  async loadBySurveyId (surveyId: string, accountId: string): Promise<TSurveyResultModel> {
     this.surveyId = surveyId
+    this.accountId = accountId
     return await Promise.resolve(this.surveyResultModel)
   }
 }
