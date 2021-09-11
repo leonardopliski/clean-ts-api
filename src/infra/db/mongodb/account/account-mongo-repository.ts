@@ -1,10 +1,7 @@
 import { MongoHelper } from '../helpers/mongo-helper'
-import { TAccountModel } from '@/domain/models/account'
-import { TAddAccountParams } from '@/domain/usecases/account/add-account'
-import { IAddAccountRepository } from '@/data/protocols/db/account/add-account-repository'
-import { ILoadAccountByEmailRepository } from '@/data/protocols/db/account/load-account-by-email-repository'
-import { ILoadAccountByTokenRepository } from '@/data/protocols/db/account/load-account-by-token-repository'
-import { IUpdateAccessTokenRepository } from '@/data/protocols/db/account/update-access-token-repository'
+import { TAccountModel } from '@/domain/models'
+import { TAddAccountParams } from '@/domain/usecases/account'
+import { IAddAccountRepository, ILoadAccountByEmailRepository, ILoadAccountByTokenRepository, IUpdateAccessTokenRepository } from '@/data/protocols/db/account'
 
 export class AccountMongoRepository
 implements

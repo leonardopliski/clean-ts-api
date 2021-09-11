@@ -1,6 +1,6 @@
 import { IController, THttpRequest, THttpResponse } from './load-surveys-controller-protocols'
 import { noContent, ok, serverError } from '@/presentation/helpers'
-import { ILoadSurveys } from '@/domain/usecases/survey/load-surveys'
+import { ILoadSurveys } from '@/domain/usecases/survey'
 
 export class LoadSurveysController implements IController {
   constructor (private readonly loadSurveys: ILoadSurveys) {}

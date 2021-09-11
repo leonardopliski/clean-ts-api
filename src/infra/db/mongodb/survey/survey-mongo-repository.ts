@@ -1,8 +1,7 @@
 import { MongoHelper, QueryBuilder } from '../helpers'
-import { TSurveyModel } from '@/domain/models/survey'
-import { TAddSurveyParams } from '@/domain/usecases/survey/add-survey'
-import { IAddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
-import { ILoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
+import { TSurveyModel } from '@/domain/models'
+import { TAddSurveyParams } from '@/domain/usecases/survey'
+import { IAddSurveyRepository, ILoadSurveysRepository } from '@/data/protocols/db/survey'
 import { ILoadSurveyByIdRepository } from '@/data/usecases/survey/load-survey-by-id/db-load-survey-by-id-protocols'
 import { ObjectId } from 'mongodb'
 

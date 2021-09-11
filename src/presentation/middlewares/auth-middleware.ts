@@ -1,5 +1,5 @@
 import { IMiddleware, THttpRequest, THttpResponse } from './auth-middleware-protocols'
-import { ILoadAccountByToken } from '@/domain/usecases/account/load-account-by-token'
+import { ILoadAccountByToken } from '@/domain/usecases/account'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
 import { AccessDeniedError } from '@/presentation/errors'
 

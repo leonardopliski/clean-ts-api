@@ -1,7 +1,7 @@
-import { ILoadSurveyResult } from '@/domain/usecases/survey-result/load-survey-result'
+import { IController, THttpRequest, THttpResponse, ILoadSurveyById } from './load-survey-result-controller-protocols'
+import { ILoadSurveyResult } from '@/domain/usecases/survey-result'
 import { InvalidParamError } from '@/presentation/errors'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
-import { IController, THttpRequest, THttpResponse, ILoadSurveyById } from './load-survey-result-controller-protocols'
 
 export class LoadSurveyResultController implements IController {
   constructor (

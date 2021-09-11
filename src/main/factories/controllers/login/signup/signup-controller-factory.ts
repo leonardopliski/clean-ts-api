@@ -1,8 +1,8 @@
 import { makeSignUpValidation } from './signup-validation-factory'
-import { makeDbAuthentication } from '@/main/factories/usecases/account/authentication/db-authentication-factory'
-import { makeDbAddAccount } from '@/main/factories/usecases/account/add-account/db-add-account-factory'
-import { makeLogControllerDecorator } from '@/main/factories/decorators/log-controller-decorator-factory'
-import { SignUpController } from '@/presentation/controllers/login/signup/signup-controller'
+import { makeDbAuthentication } from '@/main/factories/usecases/account/authentication'
+import { makeDbAddAccount } from '@/main/factories/usecases/account/add-account'
+import { makeLogControllerDecorator } from '@/main/factories/decorators'
+import { SignUpController } from '@/presentation/controllers/login/signup'
 import { IController } from '@/presentation/protocols'
 
 export const makeSignUpController = (): IController => {
