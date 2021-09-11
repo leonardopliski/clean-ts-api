@@ -1,12 +1,10 @@
 export default {
-  roots: ['<rootDir>/src'],
+  roots: ['<rootDir>/__tests__'],
   collectCoverageFrom: [
     '<rootDir>/src/**/*.ts',
-    '!<rootDir>/src/main/**',
-    '!<rootDir>/src/**/*-protocols.ts',
-    '!<rootDir>/src/**/index.ts',
-    '!**/test/**'
+    '!<rootDir>/src/main/**'
   ],
+  testMatch: ["**/*.spec.ts", "**/*.test.ts"],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
   testEnvironment: 'node',
@@ -16,6 +14,7 @@ export default {
   },
   watchPathIgnorePatterns: ['globalConfig'],
   moduleNameMapper: {
+    '@/tests/(.*)': '<rootDir>/__tests__/$1',
     '@/(.*)': '<rootDir>/src/$1'
   }
 }
