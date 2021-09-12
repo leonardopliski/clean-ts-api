@@ -1,7 +1,7 @@
 import { SurveyMongoRepository } from '@/infra/db/mongodb/survey'
 import { MongoHelper } from '@/infra/db/mongodb/helpers'
 import { mockAddAccountParams, mockAddSurveyParams } from '@/tests/domain/mocks'
-import { TSaveSurveyResultParams } from '@/domain/usecases/survey-result/save-survey-result'
+import { ISaveSurveyResult } from '@/domain/usecases'
 import { Collection } from 'mongodb'
 import ObjectID from 'bson-objectid'
 
@@ -51,7 +51,7 @@ describe('SurveyMongoRepository', () => {
       const addSurveyModels = [mockAddSurveyParams(), mockAddSurveyParams()]
       const result = await surveyCollection.insertMany(addSurveyModels)
       const survey = result.ops[0]
-      const surveyResultParams: TSaveSurveyResultParams = {
+      const surveyResultParams: ISaveSurveyResult.Params = {
         accountId,
         surveyId: survey._id,
         answer: survey.answers[0].answer,

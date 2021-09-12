@@ -1,4 +1,4 @@
-import { MongoHelper, QueryBuilder } from '../helpers'
+import { QueryBuilder, MongoHelper } from '@/infra/db/mongodb/helpers'
 import { IAddSurveyRepository, ILoadSurveysRepository, ILoadSurveyByIdRepository, ICheckSurveyByIdRepository, ILoadAnswersBySurveyRepository } from '@/data/protocols/db/survey'
 
 import { ObjectId } from 'mongodb'

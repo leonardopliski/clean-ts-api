@@ -1,12 +1,16 @@
 import { TSurveyResultModel } from '@/domain/models/survey-result'
 
-export type TSaveSurveyResultParams = {
-  surveyId: string
-  accountId: string
-  answer: string
-  date: Date
+export interface ISaveSurveyResult {
+  save: (data: ISaveSurveyResult.Params) => ISaveSurveyResult.Result
 }
 
-export interface ISaveSurveyResult {
-  save: (data: TSaveSurveyResultParams) => Promise<TSurveyResultModel>
+export namespace ISaveSurveyResult {
+  export type Params = {
+    surveyId: string
+    accountId: string
+    answer: string
+    date: Date
+  }
+
+  export type Result = Promise<TSurveyResultModel>
 }

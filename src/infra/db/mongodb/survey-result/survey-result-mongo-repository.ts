@@ -1,13 +1,11 @@
-import { MongoHelper } from '../helpers/mongo-helper'
+import { QueryBuilder, MongoHelper } from '@/infra/db/mongodb/helpers'
 import { ISaveSurveyResultRepository, ILoadSurveyResultRepository } from '@/data/protocols/db/survey-result'
-import { TSurveyResultModel } from '@/domain/models'
-import { TSaveSurveyResultParams } from '@/domain/usecases/survey-result'
-import { QueryBuilder } from '@/infra/db/mongodb/helpers'
+
 import { ObjectId } from 'mongodb'
 import round from 'mongo-round'
 
 export class SurveyResultMongoRepository implements ISaveSurveyResultRepository, ILoadSurveyResultRepository {
-  async save (data: TSaveSurveyResultParams): Promise<void> {
+  async save (data: ISaveSurveyResultRepository.Params): Promise<void> {
     const surveyResultCollection = await MongoHelper.getCollection(
       'surveyResults'
     )
@@ -28,7 +26,7 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
     )
   }
 
-  async loadBySurveyId (surveyId: string, accountId: string): Promise<TSurveyResultModel> {
+  async loadBySurveyId (surveyId: string, accountId: string): ILoadSurveyResultRepository.Result {
     const surveyResultCollection = await MongoHelper.getCollection(
       'surveyResults'
     )
