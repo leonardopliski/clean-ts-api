@@ -1,11 +1,9 @@
 import {
   IAuthentication,
-  TAuthenticationParams,
   IHashComparer,
   IEncrypter,
   ILoadAccountByEmailRepository,
-  IUpdateAccessTokenRepository,
-  TAuthenticationModel
+  IUpdateAccessTokenRepository
 } from './db-authentication-protocols'
 
 export class DbAuthentication implements IAuthentication {
@@ -16,7 +14,7 @@ export class DbAuthentication implements IAuthentication {
     private readonly updateAccessTokenRepository: IUpdateAccessTokenRepository
   ) { }
 
-  async auth (authenticationParams: TAuthenticationParams): Promise<TAuthenticationModel> {
+  async auth (authenticationParams: IAuthentication.Params): Promise<IAuthentication.Result> {
     const account = await this.loadAccountByEmailRepository.loadByEmail(authenticationParams.email)
     if (account) {
       const isValidPassword = await this.hashComparer.compare(authenticationParams.password, account.password)

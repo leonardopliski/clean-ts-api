@@ -1,10 +1,15 @@
-import { TAuthenticationModel } from '@/domain/models/authentication-model'
-
-export type TAuthenticationParams = {
-  email: string
-  password: string
+export interface IAuthentication {
+  auth: (authenticationParams: IAuthentication.Params) => Promise<IAuthentication.Result>
 }
 
-export interface IAuthentication {
-  auth: (authenticationParams: TAuthenticationParams) => Promise<TAuthenticationModel>
+export namespace IAuthentication {
+  export type Params = {
+    email: string
+    password: string
+  }
+
+  export type Result = {
+    accessToken: string
+    name: string
+  }
 }

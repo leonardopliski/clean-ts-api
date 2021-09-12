@@ -1,5 +1,5 @@
 import { TAccountModel } from '@/domain/models/account'
-import { IAddAccount, TAuthenticationParams } from '@/domain/usecases/account'
+import { IAddAccount, IAuthentication } from '@/domain/usecases/account'
 import faker from 'faker'
 
 export const mockAddAccountParams = (): IAddAccount.Params => ({
@@ -15,7 +15,7 @@ export const mockAccountModel = (): TAccountModel => ({
   password: faker.internet.password()
 })
 
-export const mockAuthenticationParams = (): TAuthenticationParams => ({
+export const mockAuthenticationParams = (): IAuthentication.Params => ({
   email: faker.internet.email(),
   password: faker.internet.password()
 })
