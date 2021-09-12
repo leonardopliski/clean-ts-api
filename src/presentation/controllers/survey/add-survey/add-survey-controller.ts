@@ -1,4 +1,4 @@
-import { IController, THttpRequest, THttpResponse, IValidation, IAddSurvey } from './add-survey-controller-protocols'
+import { IController, THttpResponse, IValidation, IAddSurvey } from './add-survey-controller-protocols'
 import { badRequest, noContent, serverError } from '@/presentation/helpers'
 
 export class AddSurveyController implements IController {
@@ -7,13 +7,13 @@ export class AddSurveyController implements IController {
     private readonly addSurvey: IAddSurvey
   ) {}
 
-  async handle (httpRequest: THttpRequest): Promise<THttpResponse> {
+  async handle (request: AddSurveyController.Request): Promise<THttpResponse> {
     try {
-      const error = this.validation.validate(httpRequest.body)
+      const error = this.validation.validate(request)
       if (error) {
         return badRequest(error)
       }
-      const { question, answers } = httpRequest.body
+      const { question, answers } = request
       await this.addSurvey.add({
         question,
         answers,
@@ -23,5 +23,17 @@ export class AddSurveyController implements IController {
     } catch (error) {
       return serverError(error)
     }
+  }
+}
+
+export namespace AddSurveyController {
+  export type Request = {
+    question: string
+    answers: Answer[]
+  }
+
+  export type Answer = {
+    image?: string
+    answer: string
   }
 }

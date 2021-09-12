@@ -1,29 +1,18 @@
 import { LogControllerDecorator } from '@/main/decorators'
-import { THttpRequest, THttpResponse, IController } from '@/presentation/protocols'
+import { THttpResponse, IController } from '@/presentation/protocols'
 import { ok, serverError } from '@/presentation/helpers'
 import { LogErrorRepositorySpy } from '@/tests/data/mocks'
 import { mockAccountModel } from '@/tests/domain/mocks'
+
 import faker from 'faker'
 
 class ControllerSpy implements IController {
   httpResponse = ok(mockAccountModel())
-  httpRequest: THttpRequest
+  request: any
 
-  async handle (httpRequest: THttpRequest): Promise<THttpResponse> {
-    this.httpRequest = httpRequest
+  async handle (request: any): Promise<THttpResponse> {
+    this.request = request
     return await Promise.resolve(this.httpResponse)
-  }
-}
-
-const mockRequest = (): THttpRequest => {
-  const password = faker.internet.password()
-  return {
-    body: {
-      name: faker.name.findName(),
-      email: faker.internet.email(),
-      password,
-      passwordConfirmation: password
-    }
   }
 }
 
@@ -49,14 +38,14 @@ const makeSut = (): TSut => {
 describe('LogController Decorator', () => {
   test('should call controller handle', async () => {
     const { sut, controllerSpy } = makeSut()
-    const httpRequest = mockRequest()
-    await sut.handle(httpRequest)
-    expect(controllerSpy.httpRequest).toEqual(httpRequest)
+    const request = faker.lorem.sentence()
+    await sut.handle(request)
+    expect(controllerSpy.request).toEqual(request)
   })
 
   test('should return the same result of the controller', async () => {
     const { sut, controllerSpy } = makeSut()
-    const httpResponse = await sut.handle(mockRequest())
+    const httpResponse = await sut.handle(faker.lorem.sentence())
     expect(httpResponse).toEqual(controllerSpy.httpResponse)
   })
 
@@ -64,7 +53,7 @@ describe('LogController Decorator', () => {
     const { sut, controllerSpy, logErrorRepositorySpy } = makeSut()
     const serverError = mockServerError()
     controllerSpy.httpResponse = serverError
-    await sut.handle(mockRequest())
+    await sut.handle(faker.lorem.sentence())
     expect(logErrorRepositorySpy.stack).toBe(serverError.body.stack)
   })
 })
