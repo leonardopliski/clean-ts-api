@@ -4,7 +4,6 @@ import {
   IAddAccountRepository,
   ILoadAccountByEmailRepository
 } from './db-add-account-protocols'
-import { TAccountModel } from '@/domain/models'
 
 export class DbAddAccount implements IAddAccount {
   constructor (
@@ -17,14 +16,14 @@ export class DbAddAccount implements IAddAccount {
     const account = await this.loadAccountByEmailRepository.loadByEmail(
       accountData.email
     )
-    let newAccount: TAccountModel = null
+    let isValid = false
     if (!account) {
       const hashedPassword = await this.hasher.hash(accountData.password)
-      newAccount = await this.addAccountRepository.add({
+      isValid = await this.addAccountRepository.add({
         ...accountData,
         password: hashedPassword
       })
     }
-    return newAccount !== null
+    return isValid
   }
 }

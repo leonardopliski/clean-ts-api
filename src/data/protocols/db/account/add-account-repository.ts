@@ -1,4 +1,3 @@
-import { TAccountModel } from '@/domain/models'
 import { IAddAccount } from '@/domain/usecases'
 
 export interface IAddAccountRepository {
@@ -7,5 +6,5 @@ export interface IAddAccountRepository {
 
 export namespace IAddAccountRepository {
   export type Params = IAddAccount.Params
-  export type Result = TAccountModel
+  export type Result = boolean
 }
