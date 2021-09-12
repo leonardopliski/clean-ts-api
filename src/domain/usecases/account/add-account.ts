@@ -1,7 +1,13 @@
-import { TAccountModel } from '@/domain/models/account'
-
-export type TAddAccountParams = Omit<TAccountModel, 'id'>
-
 export interface IAddAccount {
-  add: (account: TAddAccountParams) => Promise<TAccountModel>
+  add: (account: IAddAccount.Params) => Promise<IAddAccount.Result>
+}
+
+export namespace IAddAccount {
+  export type Params = {
+    name: string
+    email: string
+    password: string
+  }
+
+  export type Result = boolean
 }

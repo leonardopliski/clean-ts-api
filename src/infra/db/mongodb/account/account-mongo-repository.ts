@@ -1,6 +1,5 @@
 import { MongoHelper } from '../helpers/mongo-helper'
 import { TAccountModel } from '@/domain/models'
-import { TAddAccountParams } from '@/domain/usecases/account'
 import { IAddAccountRepository, ILoadAccountByEmailRepository, ILoadAccountByTokenRepository, IUpdateAccessTokenRepository } from '@/data/protocols/db/account'
 
 export class AccountMongoRepository
@@ -9,7 +8,7 @@ implements
     ILoadAccountByEmailRepository,
     IUpdateAccessTokenRepository,
     ILoadAccountByTokenRepository {
-  async add (data: TAddAccountParams): Promise<TAccountModel> {
+  async add (data: IAddAccountRepository.Params): Promise<IAddAccountRepository.Result> {
     const accountCollection = await MongoHelper.getCollection('accounts')
     const result = await accountCollection.insertOne(data)
     return MongoHelper.map(result.ops[0])

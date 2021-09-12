@@ -1,18 +1,18 @@
 import { TAccountModel } from '@/domain/models/account'
 import { IAuthentication, TAuthenticationParams } from '@/domain/usecases/account/authentication'
-import { IAddAccount, TAddAccountParams } from '@/domain/usecases/account/add-account'
+import { IAddAccount } from '@/domain/usecases/account/add-account'
 import { ILoadAccountByToken } from '@/domain/usecases/account/load-account-by-token'
 import { TAuthenticationModel } from '@/domain/models/authentication-model'
 import { mockAccountModel } from '@/tests/domain/mocks'
 import faker from 'faker'
 
 export class AddAccountSpy implements IAddAccount {
-  accountModel = mockAccountModel()
-  addAccountParams: TAddAccountParams
+  isValid = true
+  addAccountParams: IAddAccount.Params
 
-  async add (account: TAddAccountParams): Promise<TAccountModel> {
+  async add (account: IAddAccount.Params): Promise<IAddAccount.Result> {
     this.addAccountParams = account
-    return await Promise.resolve(this.accountModel)
+    return this.isValid
   }
 }
 
