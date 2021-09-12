@@ -1,7 +1,7 @@
 import {
   IController,
   THttpResponse,
-  ILoadSurveyById,
+  ILoadAnswersBySurvey,
   ISaveSurveyResult
 } from './save-survey-result-controller-protocols'
 import { forbidden, ok, serverError } from '@/presentation/helpers'
@@ -9,7 +9,7 @@ import { InvalidParamError } from '@/presentation/errors'
 
 export class SaveSurveyResultController implements IController {
   constructor (
-    private readonly loadSurveyById: ILoadSurveyById,
+    private readonly loadAnswersBySurvey: ILoadAnswersBySurvey,
     private readonly saveSurveyResult: ISaveSurveyResult
   ) {}
 
@@ -18,14 +18,13 @@ export class SaveSurveyResultController implements IController {
   ): Promise<THttpResponse> {
     try {
       const { surveyId, answer, accountId } = request
-      const survey = await this.loadSurveyById.loadById(surveyId)
-      if (survey) {
-        const answers = survey.answers.map((a) => a.answer)
+      const answers = await this.loadAnswersBySurvey.loadAnswers(surveyId)
+      if (!answers.length) {
+        return forbidden(new InvalidParamError('surveyId'))
+      } else {
         if (!answers.includes(answer)) {
           return forbidden(new InvalidParamError('answer'))
         }
-      } else {
-        return forbidden(new InvalidParamError('surveyId'))
       }
       const surveyResult = await this.saveSurveyResult.save({
         accountId,

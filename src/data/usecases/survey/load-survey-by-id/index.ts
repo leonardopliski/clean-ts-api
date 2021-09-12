@@ -1,1 +1,1 @@
-export * from './db-load-survey-by-id'
+export * from './db-load-answers-by-survey'

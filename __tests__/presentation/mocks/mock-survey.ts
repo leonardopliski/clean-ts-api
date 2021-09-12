@@ -1,8 +1,9 @@
 import { TSurveyModel } from '@/domain/models/survey'
 import { IAddSurvey, ICheckSurveyById } from '@/domain/usecases'
 import { ILoadSurveys } from '@/domain/usecases/survey/load-surveys'
-import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
-import { mockSurveyModel, mockSurveyModels } from '@/tests/domain/mocks'
+import { ILoadAnswersBySurvey } from '@/domain/usecases/survey/load-answers-by-survey'
+import { mockSurveyModels } from '@/tests/domain/mocks'
+import faker from 'faker'
 
 export class AddSurveySpy implements IAddSurvey {
   addSurveyParams: IAddSurvey.Params
@@ -23,13 +24,13 @@ export class LoadSurveysSpy implements ILoadSurveys {
   }
 }
 
-export class LoadSurveyByIdSpy implements ILoadSurveyById {
-  surveyModel = mockSurveyModel()
+export class LoadAnswersBySurveySpy implements ILoadAnswersBySurvey {
+  result = [faker.random.word(), faker.random.word()]
   id: string
 
-  async loadById (id: string): Promise<ILoadSurveyById.Result> {
+  async loadAnswers (id: string): Promise<ILoadAnswersBySurvey.Result> {
     this.id = id
-    return await Promise.resolve(this.surveyModel)
+    return this.result
   }
 }
 
