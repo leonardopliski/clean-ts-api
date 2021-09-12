@@ -1,5 +1,5 @@
 import { TSurveyModel } from '@/domain/models/survey'
-import { IAddSurvey } from '@/domain/usecases'
+import { IAddSurvey, ICheckSurveyById } from '@/domain/usecases'
 import { ILoadSurveys } from '@/domain/usecases/survey/load-surveys'
 import { ILoadSurveyById } from '@/domain/usecases/survey/load-survey-by-id'
 import { mockSurveyModel, mockSurveyModels } from '@/tests/domain/mocks'
@@ -27,8 +27,18 @@ export class LoadSurveyByIdSpy implements ILoadSurveyById {
   surveyModel = mockSurveyModel()
   id: string
 
-  async loadById (id: string): Promise<TSurveyModel> {
+  async loadById (id: string): Promise<ILoadSurveyById.Result> {
     this.id = id
     return await Promise.resolve(this.surveyModel)
+  }
+}
+
+export class CheckSurveyByIdSpy implements ICheckSurveyById {
+  result: ICheckSurveyById.Result = true
+  id: string
+
+  async checkById (id: string): Promise<ICheckSurveyById.Result> {
+    this.id = id
+    return this.result
   }
 }
