@@ -3,7 +3,8 @@ import {
   IAddAccountRepository,
   ILoadAccountByEmailRepository,
   ILoadAccountByTokenRepository,
-  IUpdateAccessTokenRepository
+  IUpdateAccessTokenRepository,
+  ICheckAccountByEmailRepository
 } from '@/data/protocols/db/account'
 
 export class AccountMongoRepository
@@ -11,7 +12,8 @@ implements
     IAddAccountRepository,
     ILoadAccountByEmailRepository,
     IUpdateAccessTokenRepository,
-    ILoadAccountByTokenRepository {
+    ILoadAccountByTokenRepository,
+    ICheckAccountByEmailRepository {
   async add (
     data: IAddAccountRepository.Params
   ): Promise<IAddAccountRepository.Result> {
@@ -35,6 +37,21 @@ implements
       }
     )
     return account && MongoHelper.map(account)
+  }
+
+  async checkByEmail (email: string): Promise<ICheckAccountByEmailRepository.Result> {
+    const accountCollection = await MongoHelper.getCollection('accounts')
+    const account = await accountCollection.findOne(
+      {
+        email
+      },
+      {
+        projection: {
+          _id: 1
+        }
+      }
+    )
+    return account !== null
   }
 
   async updateAccessToken (id: string, token: string): Promise<void> {
