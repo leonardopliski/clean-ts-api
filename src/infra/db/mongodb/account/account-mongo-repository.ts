@@ -33,7 +33,7 @@ implements
     })
   }
 
-  async loadByToken (token: string, role?: string): Promise<TAccountModel> {
+  async loadByToken (token: string, role?: string): Promise<ILoadAccountByTokenRepository.Result> {
     const accountCollection = await MongoHelper.getCollection('accounts')
     const account = await accountCollection.findOne({
       accessToken: token,
@@ -45,6 +45,10 @@ implements
           role: 'admin'
         }
       ]
+    }, {
+      projection: {
+        _id: 1
+      }
     })
     return account && MongoHelper.map(account)
   }

@@ -1,15 +1,13 @@
-import { TAccountModel } from '@/domain/models'
 import { IAuthentication, IAddAccount, ILoadAccountByToken } from '@/domain/usecases'
-import { mockAccountModel } from '@/tests/domain/mocks'
 import faker from 'faker'
 
 export class AddAccountSpy implements IAddAccount {
-  isValid = true
+  result = true
   addAccountParams: IAddAccount.Params
 
   async add (account: IAddAccount.Params): Promise<IAddAccount.Result> {
     this.addAccountParams = account
-    return this.isValid
+    return this.result
   }
 }
 
@@ -27,13 +25,13 @@ export class AuthenticationSpy implements IAuthentication {
 }
 
 export class LoadAccountByTokenSpy implements ILoadAccountByToken {
-  accountModel = mockAccountModel()
+  result = { id: faker.datatype.uuid() }
   accessToken: string
   role: string
 
-  async load (accessToken: string, role?: string): Promise<TAccountModel> {
+  async load (accessToken: string, role?: string): Promise<ILoadAccountByToken.Result> {
     this.accessToken = accessToken
     this.role = role
-    return await Promise.resolve(this.accountModel)
+    return await Promise.resolve(this.result)
   }
 }
