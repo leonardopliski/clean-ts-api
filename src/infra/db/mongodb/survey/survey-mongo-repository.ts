@@ -1,6 +1,6 @@
 import { MongoHelper, QueryBuilder } from '../helpers'
-import { TSurveyModel } from '@/domain/models'
 import { IAddSurveyRepository, ILoadSurveysRepository, ILoadSurveyByIdRepository, ICheckSurveyByIdRepository, ILoadAnswersBySurveyRepository } from '@/data/protocols/db/survey'
+
 import { ObjectId } from 'mongodb'
 
 export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveysRepository, ILoadSurveyByIdRepository, ICheckSurveyByIdRepository, ILoadAnswersBySurveyRepository {
@@ -9,7 +9,7 @@ export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveys
     await surveyCollection.insertOne(data)
   }
 
-  async loadAll (accountId: string): Promise<TSurveyModel[]> {
+  async loadAll (accountId: string): ILoadSurveysRepository.Result {
     const surveyCollection = await MongoHelper.getCollection('surveys')
     const query = new QueryBuilder()
       .lookup({
