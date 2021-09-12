@@ -11,6 +11,7 @@
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-namespace": "off",
-    "import/export": "off"
+    "import/export": "off",
+    "@typescript-eslint/no-invalid-void-type": "off"
   }
 }

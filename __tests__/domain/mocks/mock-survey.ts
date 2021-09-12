@@ -1,5 +1,5 @@
 import { TSurveyModel } from '@/domain/models/survey'
-import { TAddSurveyParams } from '@/domain/usecases/survey/add-survey'
+import { IAddSurvey } from '@/domain/usecases'
 import faker from 'faker'
 
 export const mockSurveyModel = (): TSurveyModel => ({
@@ -22,7 +22,7 @@ export const mockSurveyModels = (): TSurveyModel[] => [
   mockSurveyModel()
 ]
 
-export const mockAddSurveyParams = (): TAddSurveyParams => ({
+export const mockAddSurveyParams = (): IAddSurvey.Params => ({
   question: faker.random.words(),
   answers: [
     {

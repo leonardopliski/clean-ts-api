@@ -1,7 +1,11 @@
 import { TSurveyModel } from '@/domain/models/survey'
 
-export type TAddSurveyParams = Omit<TSurveyModel, 'id'>
-
 export interface IAddSurvey {
-  add: (data: TAddSurveyParams) => Promise<void>
+  add: (data: IAddSurvey.Params) => Promise<IAddSurvey.Result>
+}
+
+export namespace IAddSurvey {
+  export type Params = Omit<TSurveyModel, 'id'>
+
+  export type Result = void
 }

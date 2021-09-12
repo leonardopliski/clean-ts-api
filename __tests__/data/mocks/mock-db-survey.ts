@@ -1,14 +1,13 @@
 import { IAddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository'
 import { ILoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository'
 import { ILoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository'
-import { TAddSurveyParams } from '@/domain/usecases/survey/add-survey'
 import { TSurveyModel } from '@/domain/models/survey'
 import { mockSurveyModel, mockSurveyModels } from '@/tests/domain/mocks'
 
 export class AddSurveyRepositorySpy implements IAddSurveyRepository {
-  addSurveyParams: TAddSurveyParams
+  addSurveyParams: IAddSurveyRepository.Params
 
-  async add (data: TAddSurveyParams): Promise<void> {
+  async add (data: IAddSurveyRepository.Params): Promise<IAddSurveyRepository.Result> {
     this.addSurveyParams = data
     return await Promise.resolve()
   }
