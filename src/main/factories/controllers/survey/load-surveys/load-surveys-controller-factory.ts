@@ -3,7 +3,7 @@ import { makeDbLoadSurveys } from '@/main/factories/usecases/survey/load-surveys
 import { IController } from '@/presentation/protocols'
 import { LoadSurveysController } from '@/presentation/controllers/survey/load-surveys'
 
-export const makeLoadSurveysControllerFactory = (): IController => {
+export const makeLoadSurveysController = (): IController => {
   const dbLoadSurveys = makeDbLoadSurveys()
   const controller = new LoadSurveysController(dbLoadSurveys)
   return makeLogControllerDecorator(controller)
