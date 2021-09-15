@@ -1,8 +1,9 @@
 import env from '@/main/config/env'
-import app from '@/main/config/app'
+import { setupApp } from '@/main/config/app'
 import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
 import { Collection } from 'mongodb'
 import { sign } from 'jsonwebtoken'
+import { Express } from 'express'
 import request from 'supertest'
 
 let surveyCollection: Collection
@@ -26,9 +27,12 @@ const makeAccessToken = async (): Promise<string> => {
   return accessToken
 }
 
+let app: Express
+
 describe('Survey Routes', () => {
   beforeAll(async () => {
     await MongoHelper.connect(process.env.MONGO_URL)
+    app = await setupApp()
   })
 
   beforeEach(async () => {
