@@ -123,4 +123,51 @@ describe('SurveyResult GraphQL', () => {
       expect(res.body.errors[0].message).toBe('Access denied')
     })
   })
+
+  describe('SurveyResult Mutation', () => {
+    test('should return the SurveyResult', async () => {
+      const accessToken = await mockAccessToken()
+      const now = new Date()
+      const surveyRes = await surveyCollection.insertOne({
+        question: 'Question',
+        answers: [{
+          answer: 'Answer 1',
+          image: 'http://image-name.com'
+        }, {
+          answer: 'Answer 2'
+        }],
+        date: now
+      })
+      const query = `mutation {
+        saveSurveyResult (surveyId: "${surveyRes.ops[0]._id as string}", answer: "Answer 1") {
+          question
+          answers {
+            answer
+            count
+            percent
+            isCurrentAccountAnswer
+          }
+          date
+        }
+      }`
+      const res = await request(app)
+        .post('/graphql')
+        .set('x-access-token', accessToken)
+        .send({ query })
+      expect(res.status).toBe(200)
+      expect(res.body.data.saveSurveyResult.question).toBe('Question')
+      expect(res.body.data.saveSurveyResult.answers).toEqual([{
+        answer: 'Answer 1',
+        count: 1,
+        percent: 100,
+        isCurrentAccountAnswer: true
+      }, {
+        answer: 'Answer 2',
+        count: 0,
+        percent: 0,
+        isCurrentAccountAnswer: false
+      }])
+      expect(res.body.data.saveSurveyResult.date).toBe(now.toISOString())
+    })
+  })
 })
