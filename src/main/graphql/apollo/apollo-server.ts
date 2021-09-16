@@ -25,23 +25,17 @@ const checkError = (error: GraphQLError, errorName: string): boolean => {
   return [error.name, error.originalError?.name].some(name => name === errorName)
 }
 
-let schema = makeExecutableSchema({
-  resolvers,
-  typeDefs
-})
+let schema = makeExecutableSchema({ resolvers, typeDefs })
 schema = authDirectiveTransformer(schema)
 
-export default (): ApolloServer => {
-  const server = new ApolloServer({
-    schema,
-    context: ({ req }) => ({ req }),
-    plugins: [
-      {
-        requestDidStart: async () => ({
-          willSendResponse: async ({ response, errors }): Promise<void> => handleErrors(response, errors)
-        })
-      }
-    ]
-  })
-  return server
-}
+export const setupApolloServer = (): ApolloServer => new ApolloServer({
+  schema,
+  context: ({ req }) => ({ req }),
+  plugins: [
+    {
+      requestDidStart: async () => ({
+        willSendResponse: async ({ response, errors }): Promise<void> => handleErrors(response, errors)
+      })
+    }
+  ]
+})
