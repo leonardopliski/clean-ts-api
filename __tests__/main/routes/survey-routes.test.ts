@@ -10,7 +10,7 @@ let surveyCollection: Collection
 let accountCollection: Collection
 let app: Express
 
-const makeAccessToken = async (): Promise<string> => {
+const mockAccessToken = async (): Promise<string> => {
   const res = await accountCollection.insertOne({
     name: 'Leonardo',
     email: 'leonardopliski@gmail.com',
@@ -66,7 +66,7 @@ describe('Survey Routes', () => {
     })
 
     test('should return 204 on add survey with a valid access token', async () => {
-      const accessToken = await makeAccessToken()
+      const accessToken = await mockAccessToken()
       await request(app)
         .post('/api/surveys')
         .set('x-access-token', accessToken)
@@ -94,7 +94,7 @@ describe('Survey Routes', () => {
     })
 
     test('should return 204 on load surveys with a valid access token', async () => {
-      const accessToken = await makeAccessToken()
+      const accessToken = await mockAccessToken()
       await request(app)
         .get('/api/surveys')
         .set('x-access-token', accessToken)
