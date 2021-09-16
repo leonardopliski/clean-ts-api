@@ -169,5 +169,36 @@ describe('SurveyResult GraphQL', () => {
       }])
       expect(res.body.data.saveSurveyResult.date).toBe(now.toISOString())
     })
+
+    test('should return AccessDeniedError if no access token is provided', async () => {
+      const surveyRes = await surveyCollection.insertOne({
+        question: 'Question',
+        answers: [{
+          answer: 'Answer 1',
+          image: 'http://image-name.com'
+        }, {
+          answer: 'Answer 2'
+        }],
+        date: new Date()
+      })
+      const query = `mutation {
+        saveSurveyResult (surveyId: "${surveyRes.ops[0]._id as string}", answer: "Answer 1") {
+          question
+          answers {
+            answer
+            count
+            percent
+            isCurrentAccountAnswer
+          }
+          date
+        }
+      }`
+      const res = await request(app)
+        .post('/graphql')
+        .send({ query })
+      expect(res.status).toBe(403)
+      expect(res.body.data).toBeFalsy()
+      expect(res.body.errors[0].message).toBe('Access denied')
+    })
   })
 })
