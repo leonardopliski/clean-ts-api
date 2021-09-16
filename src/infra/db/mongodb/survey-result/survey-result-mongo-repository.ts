@@ -6,7 +6,7 @@ import round from 'mongo-round'
 
 export class SurveyResultMongoRepository implements ISaveSurveyResultRepository, ILoadSurveyResultRepository {
   async save (data: ISaveSurveyResultRepository.Params): Promise<void> {
-    const surveyResultCollection = await MongoHelper.getCollection(
+    const surveyResultCollection = MongoHelper.getCollection(
       'surveyResults'
     )
     await surveyResultCollection.findOneAndUpdate(
@@ -26,8 +26,8 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
     )
   }
 
-  async loadBySurveyId (surveyId: string, accountId: string): ILoadSurveyResultRepository.Result {
-    const surveyResultCollection = await MongoHelper.getCollection(
+  async loadBySurveyId (surveyId: string, accountId: string): Promise<ILoadSurveyResultRepository.Result> {
+    const surveyResultCollection = MongoHelper.getCollection(
       'surveyResults'
     )
     const query = new QueryBuilder()
@@ -69,7 +69,7 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
         },
         currentAccountAnswer: {
           $push: {
-            $cond: [{ $eq: ['$data.accountId', accountId] }, '$data.answer', null]
+            $cond: [{ $eq: ['$data.accountId', new ObjectId(accountId)] }, '$data.answer', null]
           }
         }
       })
@@ -194,7 +194,7 @@ export class SurveyResultMongoRepository implements ISaveSurveyResultRepository,
         answers: '$answers'
       })
       .build()
-    const surveyResult = await surveyResultCollection.aggregate(query).toArray()
+    const surveyResult = await surveyResultCollection.aggregate<ILoadSurveyResultRepository.Result>(query).toArray()
     return surveyResult.length ? surveyResult[0] : null
   }
 }

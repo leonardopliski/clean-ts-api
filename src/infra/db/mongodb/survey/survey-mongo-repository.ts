@@ -5,12 +5,12 @@ import { ObjectId } from 'mongodb'
 
 export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveysRepository, ILoadSurveyByIdRepository, ICheckSurveyByIdRepository, ILoadAnswersBySurveyRepository {
   async add (data: IAddSurveyRepository.Params): Promise<IAddSurveyRepository.Result> {
-    const surveyCollection = await MongoHelper.getCollection('surveys')
+    const surveyCollection = MongoHelper.getCollection('surveys')
     await surveyCollection.insertOne(data)
   }
 
   async loadAll (accountId: string): ILoadSurveysRepository.Result {
-    const surveyCollection = await MongoHelper.getCollection('surveys')
+    const surveyCollection = MongoHelper.getCollection('surveys')
     const query = new QueryBuilder()
       .lookup({
         from: 'surveyResults',
@@ -45,7 +45,7 @@ export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveys
   }
 
   async loadById (id: string): Promise<ILoadSurveyByIdRepository.Result> {
-    const surveyCollection = await MongoHelper.getCollection('surveys')
+    const surveyCollection = MongoHelper.getCollection('surveys')
     const survey = await surveyCollection.findOne({
       _id: new ObjectId(id)
     })
@@ -53,7 +53,7 @@ export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveys
   }
 
   async loadAnswers (id: string): Promise<ILoadAnswersBySurveyRepository.Result> {
-    const surveyCollection = await MongoHelper.getCollection('surveys')
+    const surveyCollection = MongoHelper.getCollection('surveys')
     const query = new QueryBuilder()
       .match({
         _id: new ObjectId(id)
@@ -68,7 +68,7 @@ export class SurveyMongoRepository implements IAddSurveyRepository, ILoadSurveys
   }
 
   async checkById (id: string): Promise<ICheckSurveyByIdRepository.Result> {
-    const surveyCollection = await MongoHelper.getCollection('surveys')
+    const surveyCollection = MongoHelper.getCollection('surveys')
     const survey = await surveyCollection.findOne({
       _id: new ObjectId(id)
     }, {

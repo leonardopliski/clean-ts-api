@@ -17,10 +17,10 @@ const mockAccessToken = async (): Promise<string> => {
     password: '123',
     role: 'admin'
   })
-  const id = res.ops[0]._id
+  const id = res.insertedId.toHexString()
   const accessToken = sign({ id }, env.jwtSecret)
   await accountCollection.updateOne({
-    _id: id
+    _id: res.insertedId
   }, {
     $set: {
       accessToken
@@ -36,8 +36,8 @@ describe('Survey Routes', () => {
   })
 
   beforeEach(async () => {
-    surveyCollection = await MongoHelper.getCollection('surveys')
-    accountCollection = await MongoHelper.getCollection('accounts')
+    surveyCollection = MongoHelper.getCollection('surveys')
+    accountCollection = MongoHelper.getCollection('accounts')
     await surveyCollection.deleteMany({})
     await accountCollection.deleteMany({})
   })
