@@ -1,4 +1,4 @@
-[![Build Status](https://www.travis-ci.com/leonardopliski/clean-ts-api.svg?branch=main)](https://www.travis-ci.com/leonardopliski/clean-ts-api)
+[![Build Status](https://app.travis-ci.com/leonardopliski/clean-ts-api.svg?branch=main)](https://www.travis-ci.com/leonardopliski/clean-ts-api)
 [![Coverage Status](https://coveralls.io/repos/github/leonardopliski/clean-ts-api/badge.svg)](https://coveralls.io/github/leonardopliski/clean-ts-api)
 
 ### **Clean TS API**
