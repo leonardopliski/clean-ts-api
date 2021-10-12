@@ -24,6 +24,53 @@ The goal of this API is to create a well defined and decoupled architecture, usi
 5. [Reply Survey](./__requirements__/save-survey-result.md)
 6. [Survey Result](./__requirements__/load-survey-result.md)
 
+
+## Local Installation
+
+First of all, clone this `repo`:
+
+```sh
+git clone git@github.com:leonardopliski/clean-ts-api.git
+```
+
+Move to the project dir:
+
+```sh
+cd clean-ts-api/
+```
+Review the `.env.local` settings to bootstrap your environment.
+
+With [NVM](https://github.com/nvm-sh/nvm) run:
+
+```sh
+nvm use
+```
+
+With [NPM](https://www.npmjs.com/) run:
+
+```sh
+npm install
+```
+
+With [Docker Compose](https://docs.docker.com/compose/) just run:
+
+```sh
+npm run up
+```
+
+Done! Access your endpoints:
+
+API Docs:
+
+```
+http://localhost:5050/api-docs/
+```
+
+MongoDB Express Interface:
+```
+http://localhost:8081/
+```
+
 > ## Applied Principles
 
 * SRP - Single Responsibility Principle
