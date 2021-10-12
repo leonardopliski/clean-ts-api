@@ -11,6 +11,10 @@ The goal of this API is to create a well defined and decoupled architecture, usi
 
 ## [**Link to the OpenAPI Docs**](https://lpliski.herokuapp.com/api-docs)
 
+<p align="center">
+  <img src="./__docs__/open-api-spec.png" alt="OpenAPI Docs" />
+</p>
+
 > ## APIs
 
 1. [Sign Up](./__requirements__/signup.md)
