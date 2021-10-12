@@ -9,7 +9,9 @@ This repository contains the API of the [Rodrigo Manguinho](https://www.udemy.co
 
 The goal of this API is to create a well defined and decoupled architecture, using TDD (Test Driven Development) as a working methodology. It also uses the Clean Architecture to distribute the responsibilities between layers, always following the principles of SOLID and applying Design Patterns to solve common problems.
 
-> ## APIs construídas no treinamento
+## [**Link to the OpenAPI Docs**](https://lpliski.herokuapp.com/api-docs)
+
+> ## APIs
 
 1. [Sign Up](./__requirements__/signup.md)
 2. [Login](./__requirements__/login.md)
