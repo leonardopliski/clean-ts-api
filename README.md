@@ -11,12 +11,12 @@ The goal of this API is to create a well defined and decoupled architecture, usi
 
 > ## APIs construídas no treinamento
 
-1. [Sign Up](./requirements/signup.md)
-2. [Login](./requirements/login.md)
-3. [Create Survey](./requirements/add-survey.md)
-4. [Load Surveys](./requirements/load-surveys.md)
-5. [Reply Survey](./requirements/save-survey-result.md)
-6. [Survey Result](./requirements/load-survey-result.md)
+1. [Sign Up](./__requirements__/signup.md)
+2. [Login](./__requirements__/login.md)
+3. [Create Survey](./__requirements__/add-survey.md)
+4. [Load Surveys](./__requirements__/load-surveys.md)
+5. [Reply Survey](./__requirements__/save-survey-result.md)
+6. [Survey Result](./__requirements__/load-survey-result.md)
 
 > ## Applied Principles
 
